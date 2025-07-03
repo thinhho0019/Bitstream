@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Manrope,Inter } from "next/font/google";
 import "./globals.css";
+
 import SessionProviderWrapper from "./sessionProviderWrapper";
 import NavBar from "@/components/navBar";
+import LayoutWrapper from "./layoutWrapper";
 SessionProviderWrapper
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -33,8 +35,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans`}
       >
-        <NavBar />
-        <SessionProviderWrapper>{children}</SessionProviderWrapper>
+        <LayoutWrapper> {children}</LayoutWrapper>
       </body>
     </html>
   );
