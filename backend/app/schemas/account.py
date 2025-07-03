@@ -7,6 +7,7 @@ class AccountBase(BaseModel):
     image: str
     name: str
     email: str
+    provider_account_id: str
     provider: str
 
 

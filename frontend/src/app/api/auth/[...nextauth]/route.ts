@@ -17,8 +17,18 @@ const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async signIn({ profile }) {
-
+        // async jwt({token, account, user}){
+        //     if(account && user){
+        //         return {
+        //             accessToken: account.access_token,
+        //             refreshToken: account.refresh_token,
+        //             accessTokenExpires: Date.now() + 3600 * 1000,
+        //             userId: user.id
+        //         }
+        //     }
+        //     return token;
+        // },
+        async signIn({ profile , account}) {
             if (!profile?.email) {
                 return false; // Prevent sign-in if email is not available
             }
@@ -26,6 +36,7 @@ const authOptions: NextAuthOptions = {
                 email: profile.email,
                 name: profile.name || "",
                 image: profile.image || " ",
+                provider_account_id: account?.providerAccountId || "",
                 provider: "google",
             });
             return true; // Allow sign-in
@@ -34,6 +45,7 @@ const authOptions: NextAuthOptions = {
             // Sau khi login thành công, chuyển đến trang /home
             return `${baseUrl}/`;
         }
+
     },
 };
 const handler = NextAuth(authOptions);
