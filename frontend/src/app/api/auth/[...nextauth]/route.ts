@@ -78,7 +78,6 @@ const authOptions: NextAuthOptions = {
                 email: profile.email,
                 name: profile.name || "",
                 image: user.image || " ",
-                provider_account_id: account?.providerAccountId || "",
                 provider: "google",
             });
             if (!result) return false;

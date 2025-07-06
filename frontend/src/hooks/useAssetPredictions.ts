@@ -7,29 +7,31 @@ export const useAssetPrediction = () => {
     const [loadingAsset, setLoadingAsset] = useState<boolean>(true);
     const [errorAsset, setErrorAsset] = useState<string | null>(null);
     const getUsetForToken = async () => {
-            const res = await fetch("/api/auth");
-            if (!res.ok) {
-                //fail request get token for api
-                return;
-            }
-            const data = await res.json();
-            const dataUser: Account = {
-                email: data.email,
-                image: data.image,
-                name: data.name,
-                id: data.provider_account_id
-            };
-            return dataUser;
+        const res = await fetch("/api/auth");
+        if (!res.ok) {
+            //fail request get token for api
+            return;
         }
+        const data = await res.json();
+        const dataUser: Account = {
+            email: data.email,
+            image: data.image,
+            name: data.name,
+            id: data.userId
+        };
+        return dataUser;
+    }
     const fetchAsset = async () => {
-
-        const response = await api.get("/asset-predictions?provider_account_id=1");
-        if (response.status !== 200) {
-            throw new Error(`Error fetching asset: ${response.statusText}`);
-            setErrorAsset("Failed to fetch asset");
+        const resultToken = await getUsetForToken();
+        if (resultToken) {
+            const response = await api.get(`/asset-predictions?account_id=${resultToken.id}`);
+            if (response.status !== 200) {
+                throw new Error(`Error fetching asset: ${response.statusText}`);
+                setErrorAsset("Failed to fetch asset");
+            }
+            setAsset(response.data);
+            setLoadingAsset(false);
         }
-        setAsset(response.data);
-        setLoadingAsset(false);
     };
     useEffect(() => {
         fetchAsset();

@@ -15,7 +15,6 @@ class AssetPrediction(Base):
     status = Column(String, nullable=False, default="pending")  # pending, success, fail
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     end_time = Column(DateTime)
-
     #one to many account with asset_predictions
     account_id = Column(String, ForeignKey("accounts.id"), nullable=False)
     account = relationship("Account", back_populates="asset_predictions")

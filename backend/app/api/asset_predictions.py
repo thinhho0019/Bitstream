@@ -52,7 +52,7 @@ def create_asset_prediction(asset: AssetPredictionCreate, db: Session = Depends(
 
 
 @router.get("/asset-predictions", response_model=list[AssetPredictionOut])
-def create_asset_prediction(account_id: int, db: Session = Depends(get_db)):
+def create_asset_prediction(account_id: str, db: Session = Depends(get_db)):
     try:
         # check email exist
         db_asset_predicrection = db.query(AssetPrediction).filter(AssetPrediction.account_id == account_id)

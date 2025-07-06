@@ -13,6 +13,7 @@ import TableComponent from "@/components/tableComponent";
 import { useAssetPrediction } from "@/hooks/useAssetPredictions";
 import { get } from "http";
 import { redirect } from "next/dist/server/api-utils";
+import { assetPredictionService } from "@/services/assetPrediction";
 export default function Dashboard() {
     const [disabledButtonUI, setDisabledButtonUI] = useState<boolean>(false);
     const [showModel, setShowModel] = useState<boolean>(false);
@@ -36,9 +37,14 @@ export default function Dashboard() {
             router.push("/login");
             return;
         }
+        const data = await res.json();
+        const userId = data.userId;
+        const current_value = parseFloat(contentForm.current_value as string);
+        const expiration_time = contentForm.expiration_time
+        console.log(data);
         setShowMessage(
-            `Giá hiện tại: ${contentForm.current_value}, Giá dự kiến: 
-            ${nextValue}, Hết hạn yêu cầu: ${contentForm.expiration_time}`
+            `Giá hiện tại: ${current_value}, Giá dự kiến: 
+            ${nextValue}, Hết hạn yêu cầu: ${expiration_time}`
         );
         setDisabledButtonUI(true);
         setShowModel(true); // Hiện modal xác nhận
@@ -51,8 +57,32 @@ export default function Dashboard() {
         contentForm.expiration_time = optionExpirationTime[index];
 
     };
-    const handleButtonComfirmModal = () => {
+    const handleButtonComfirmModal = async () => {
+        const res = await fetch("/api/auth");
+        if (!res.ok) {
+            router.push("/login");
+            return;
+        }
+        const data = await res.json();
+        const userId = data.userId;
+        const current_value = parseFloat(contentForm.current_value as string);
+        const expiration_time = contentForm.expiration_time
+        console.log(data);
+        setShowMessage(
+            `Giá hiện tại: ${current_value}, Giá dự kiến: 
+            ${nextValue}, Hết hạn yêu cầu: ${expiration_time}`
+        );
+        const resAsset = await assetPredictionService({
+            name: "bitcoin",
+            current_value: current_value,
+            next_value: nextValue, // ví dụ, cần truyền đủ nếu hàm yêu cầu
+            expiration_time: expiration_time, // ví dụ ISO format
+            account_id: userId,
+            status: "pending",
+        });
+        console.log(resAsset);
         setShowModel(false); // Đóng modal xác nhậnọi lại hàm refetch để cập nhật dữ liệu
+
     };
     const handleButtonCloseModal = () => {
         setShowModel(false); // Đóng modal xác nhậnọi lại hàm refetch để cập nhật dữ liệu
