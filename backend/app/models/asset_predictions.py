@@ -17,5 +17,5 @@ class AssetPrediction(Base):
     end_time = Column(DateTime)
 
     #one to many account with asset_predictions
-    account_id = Column(Integer, ForeignKey("accounts.id"), nullable=False)
+    account_id = Column(String, ForeignKey("accounts.id"), nullable=False)
     account = relationship("Account", back_populates="asset_predictions")

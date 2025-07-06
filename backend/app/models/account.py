@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 class Account(Base):
     __tablename__ = "accounts"
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String, primary_key=True)
     email = Column(String, unique=True, index=True, nullable=False)
     name = Column(String)
     image = Column(String, default="")

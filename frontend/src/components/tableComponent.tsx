@@ -11,7 +11,7 @@ export default function TableComponent({ label, value }: Props) {
     const [selectedDeleteIndex, setSelectedDeleteIndex] = useState<number | null>(null);
     if (!Array.isArray(value) || value.length === 0) {
         return (
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center mt-4">
                 <p className="text-gray-500 dark:text-neutral-500">No data available</p>
             </div>
         );

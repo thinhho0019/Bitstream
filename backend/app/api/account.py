@@ -19,11 +19,12 @@ def get_db():
 @router.post("/accounts", response_model=AccountOut)
 def create_account(account: AccountCreate, db: Session = Depends(get_db)):
     try:
-        #check email exist
+        # check email exist
         check_email = db.query(Account).filter(Account.email == account.email).first()
         if check_email:
             return check_email
-        db_account = Account(email=account.email, name=account.name, image=account.image, provider_account_id=account.provider_account_id)
+        db_account = Account(id=account.id, email=account.email, name=account.name, image=account.image,
+                             provider_account_id=account.provider_account_id)
         db.add(db_account)
         db.commit()
         db.refresh(db_account)
@@ -34,6 +35,3 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error retrieving account: {str(e)}"
         )
-
-
-

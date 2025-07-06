@@ -9,11 +9,10 @@ class AccountBase(BaseModel):
     email: str
     provider_account_id: str
     provider: str
-
+    id: str
 
 class AccountCreate(AccountBase):
     pass
 class AccountOut(AccountBase):
-    id: int
     class Config:
         from_attributes = True

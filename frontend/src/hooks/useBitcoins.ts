@@ -21,19 +21,16 @@ export const useBitcoins = () => {
         setLoading(true);
         try {
             const response = await axios.get("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT");
-            if(response.status !== 200) {
+            if (response.status !== 200) {
                 throw new Error(`Error fetching bitcoins: ${response.statusText}`);
             }
-            console.log("Fetched bitcoins:", response.data);
             const bitcoinPrice: Bitcoin = {
                 price: parseFloat(response.data.price)
             };
-            if(bitcoinBefore > bitcoinPrice.price){
+            if (bitcoinBefore > bitcoinPrice.price) {
                 setRedOrGreen("red");
-                console.log("red");
             } else {
                 setRedOrGreen("green");
-                console.log("green");
             }
             setBitcoins(bitcoinPrice);
             bitcoinBefore = bitcoinPrice.price;
@@ -51,7 +48,7 @@ export const useBitcoins = () => {
             fetchBitcoins();
             console.log("Fetching bitcoins every 3 seconds");
         }, 3000);
-        
+
         fetchBitcoins();
         if (!document.getElementById("tradingview-widget-script")) {
             const script = document.createElement("script");
@@ -110,5 +107,5 @@ export const useBitcoins = () => {
         };
     }, []);
 
-    return { bitcoins, loading, error, containerRef,redOrGreen, refetch: fetchBitcoins };
+    return { bitcoins, loading, error, containerRef, redOrGreen, refetch: fetchBitcoins };
 }

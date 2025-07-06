@@ -4,35 +4,41 @@ import BitcoinChart from "@/components/bitcoinChart";
 import PriceController from "@/components/PriceController";
 import OptionSelector from "@/components/optionSelecter";
 import ButtonUI from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { use, useState } from "react";
 import ComfirmModal from "@/components/comfirmModal";
 import React, { useEffect } from "react";
 import next from "next";
 import TableComponent from "@/components/tableComponent";
 import { useAssetPrediction } from "@/hooks/useAssetPredictions";
+import { get } from "http";
+import { redirect } from "next/dist/server/api-utils";
 export default function Dashboard() {
     const [disabledButtonUI, setDisabledButtonUI] = useState<boolean>(false);
     const [showModel, setShowModel] = useState<boolean>(false);
     const [showMessage, setShowMessage] = useState<string>("");
     const { asset, errorAsset, loadingAsset, refetchAsset } = useAssetPrediction();
     const { bitcoins, loading, error, containerRef, redOrGreen, refetch } = useBitcoins();
+    const [nextValue, setNextValue] = useState<number>(0);
+    const router = useRouter();
     const contentForm = {
         current_value: bitcoins?.price ? parseFloat(bitcoins.price.toString()).toFixed(0) : 0,
-        next_value: 0.0,
         expiration_time: "1H",
     };
     const optionExpirationTime = ["1H", "1D", "1W", "1M"];
     const handlePriceChange = (value: number) => {
-        console.log("New price value:", value);
-        contentForm.next_value = value;
-        console.log("Updated contentForm:", contentForm);
+        console.log(contentForm);
+        setNextValue(value);
     };
-    const handleButtonClickSetSchedule = () => {
-        console.log("Set schedule button clicked");
-        console.log("contentForm:", contentForm.current_value, contentForm.next_value, contentForm.expiration_time);
+    const handleButtonClickSetSchedule = async () => {
+        const res = await fetch("/api/auth");
+        if (!res.ok) {
+            router.push("/login");
+            return;
+        }
         setShowMessage(
             `Giá hiện tại: ${contentForm.current_value}, Giá dự kiến: 
-            ${contentForm.next_value}, Hết hạn yêu cầu: ${contentForm.expiration_time}`
+            ${nextValue}, Hết hạn yêu cầu: ${contentForm.expiration_time}`
         );
         setDisabledButtonUI(true);
         setShowModel(true); // Hiện modal xác nhận
@@ -42,15 +48,13 @@ export default function Dashboard() {
         }, 2000);
     };
     const handleButtonClickOptionSelector = (index: number) => {
-        console.log("Selected option:", index);
         contentForm.expiration_time = optionExpirationTime[index];
+
     };
     const handleButtonComfirmModal = () => {
-        console.log("Open modal button clicked");
         setShowModel(false); // Đóng modal xác nhậnọi lại hàm refetch để cập nhật dữ liệu
     };
     const handleButtonCloseModal = () => {
-        console.log("Open modal button clicked");
         setShowModel(false); // Đóng modal xác nhậnọi lại hàm refetch để cập nhật dữ liệu
     };
     //useeffect update contentForm to modal message
@@ -90,10 +94,8 @@ export default function Dashboard() {
                     </div>
 
                 </div>
-                {loadingAsset && <p>Loading...</p>}
-                {errorAsset && <p>Error: {errorAsset}</p>}
                 {asset && (<TableComponent label={"Schedule"} value={asset} />)}
-                
+
             </div>
         </main>
     );
