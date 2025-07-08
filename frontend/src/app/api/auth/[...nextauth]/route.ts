@@ -58,7 +58,8 @@ const authOptions: NextAuthOptions = {
                     image: user.image,
                     name: user.name,
                     email: user.email,
-                    userId: user.id
+                    userId: user.id,
+                    id_token: account.id_token,       // 👈 Thêm dòng này
                 }
             }
             if (token?.exp) {
@@ -69,7 +70,6 @@ const authOptions: NextAuthOptions = {
             return token;
         },
         async signIn({ profile, account, user }) {
-            console.log(user);
             if (!profile?.email) {
                 return false; // Prevent sign-in if email is not available
             }
@@ -86,7 +86,18 @@ const authOptions: NextAuthOptions = {
         async redirect({ url, baseUrl }) {
             // Sau khi login thành công, chuyển đến trang /home
             return `${baseUrl}/dashboard`;
-        }
+        },
+        async session({ session, token }) {
+            session.accessToken = token.accessToken?.toString();
+            session.refreshToken = token.refreshToken?.toString();
+            session.expires = token.accessTokenExpires?.toString();
+            session.user.providerAccountId = token.providerAccountId?.toString();
+            session.user.image = token.image?.toString();
+            session.user.name = token.name?.toString();
+            session.user.email = token.email?.toString();
+            session.user.id_token = token.id_token?.toString(); // ✅ Thêm dòng này để client dùng
+            return session;
+        },
 
     },
 };

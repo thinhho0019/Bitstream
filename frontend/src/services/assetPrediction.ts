@@ -30,3 +30,20 @@ export const assetPredictionService = async ({
         throw new Error("Failed to create asset prediction");
     }
 };
+
+
+export const deleteAssetPrediction = async ({
+    id, token_id 
+}: { id: number , token_id:string}) => {
+    try {
+        const response = await api.delete(`/asset-predictions/${id}`,{
+            headers:{
+                Authorization:`Bearer ${token_id}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error delete asset prediction!", error);
+        throw new Error("Fail delete asset prediction");
+    }
+};

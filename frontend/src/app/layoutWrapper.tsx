@@ -4,6 +4,7 @@
 import { usePathname } from "next/navigation";
 import NavBar from "@/components/navBar";
 import SessionProviderWrapper from "@/app/sessionProviderWrapper";
+import BottomNavigation from "@/components/bottomNav";
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -13,6 +14,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     <>
       {lastSegment !== "login" && <NavBar />}
       <SessionProviderWrapper>{children}</SessionProviderWrapper>
+      <BottomNavigation />
     </>
   );
 }
