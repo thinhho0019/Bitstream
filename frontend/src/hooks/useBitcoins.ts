@@ -46,7 +46,6 @@ export const useBitcoins = () => {
         // Chỉ thêm script nếu chưa có
         const intervalId = setInterval(() => {
             fetchBitcoins();
-            console.log("Fetching bitcoins every 3 seconds");
         }, 3000);
 
         fetchBitcoins();

@@ -1,43 +1,14 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { SyncGoogleAccount } from "@/services/account";
-import axios from "axios";
-import { access } from "fs";
+import { refreshAccessToken, SyncGoogleAccount } from "@/services/account";
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+console.log(GOOGLE_CLIENT_ID)
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
     throw new Error("Google Client ID and Secret must be provided");
 }
-async function refreshAccessToken(token: any) {
-    try {
-        const url = "https://oauth2.googleapis.com/token";
-        const response = await axios.post(url, null, {
-            params: {
-                client_id: process.env.GOOGLE_CLIENT_ID,
-                client_secret: process.env.GOOGLE_CLIENT_SECRET,
-                grant_type: "refresh_token",
-                refresh_token: token.refreshToken,
-            },
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            }
-        });
-        const refreshToken = response.data;
-        return {
-            ...token,
-            accessToken: refreshToken.access_token,
-            accessTokenExpires: Date.now() + refreshToken.expires_in * 1000,
-            refreshToken: refreshToken.refresh_token ?? token.refreshToken,
-        }
-    } catch (error) {
-        console.error("Error refreshing access token", error);
-        return {
-            ...token,
-            error: "RefreshAccessTokenError",
-        };
-    }
-}
-const authOptions: NextAuthOptions = {
+
+export const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt",
     },
@@ -49,26 +20,29 @@ const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async jwt({ token, account, user }) {
+            console.log("🔁 JWT callback called");
             if (account && user) {
                 return {
                     accessToken: account.access_token,
                     refreshToken: account.refresh_token,
-                    accessTokenExpires: Date.now() + 3600 * 1000,
+                    accessTokenExpires: Date.now() + (account.expires_at || 3600) * 1000, // Nếu có expires_in
                     providerAccountId: account.providerAccountId,
                     image: user.image,
                     name: user.name,
                     email: user.email,
                     userId: user.id,
-                    id_token: account.id_token,       // 👈 Thêm dòng này
-                }
+                    id_token: account.id_token,
+                };
             }
-            if (token?.exp) {
-                if (Date.now() < Number(token.exp)) {
-                    return await refreshAccessToken(token);
-                }
+            // Nếu access token còn hạn thì dùng tiếp
+            if (Date.now() < Number(token.accessTokenExpires || 0)) {
+                return token;
             }
-            return token;
+
+            // Access token đã hết hạn → refresh
+            return await refreshAccessToken(token);
         },
+
         async signIn({ profile, account, user }) {
             if (!profile?.email) {
                 return false; // Prevent sign-in if email is not available

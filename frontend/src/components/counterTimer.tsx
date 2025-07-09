@@ -17,12 +17,20 @@ export default function CountdownTimer({ targetTime }: { targetTime: string }) {
                 return;
             }
             setColorText("text-green-500");
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            setTimeLeft(
-                `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
-            );
+            if (days > 0) {
+                setTimeLeft(
+                    `${String(days)}D:${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`
+                );
+            } else {
+                setTimeLeft(
+                    `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+                );
+            }
+
         }, 1000);
 
         return () => clearInterval(interval);

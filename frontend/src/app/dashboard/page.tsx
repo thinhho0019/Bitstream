@@ -5,22 +5,23 @@ import PriceController from "@/components/PriceController";
 import OptionSelector from "@/components/optionSelecter";
 import ButtonUI from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { use, useState } from "react";
+import { useState } from "react";
 import ComfirmModal from "@/components/comfirmModal";
 import React, { useEffect } from "react";
-import next from "next";
+ 
 import TableComponent from "@/components/tableComponent";
 import { useAssetPrediction } from "@/hooks/useAssetPredictions";
-import { get } from "http";
-import { redirect } from "next/dist/server/api-utils";
+ 
 import { assetPredictionService, deleteAssetPrediction } from "@/services/assetPrediction";
 import { getSession } from "next-auth/react";
+ 
 export default function Dashboard() {
     const [disabledButtonUI, setDisabledButtonUI] = useState<boolean>(false);
     const [showModel, setShowModel] = useState<boolean>(false);
     const [showModelDelete, setShowModelDelete] = useState<boolean>(false);
     const [showMessage, setShowMessage] = useState<string>("");
     const { asset, errorAsset, loadingAsset, refetchAsset } = useAssetPrediction();
+    const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
     const { bitcoins, loading, error, containerRef, redOrGreen, refetch } = useBitcoins();
     const [nextValue, setNextValue] = useState<number>(0);
     const router = useRouter();
@@ -50,7 +51,6 @@ export default function Dashboard() {
         );
         setDisabledButtonUI(true);
         setShowModel(true); // Hiện modal xác nhận
-        console.log("showModel:", showModel);
         setTimeout(() => {
             setDisabledButtonUI(false);
         }, 2000);
@@ -61,16 +61,21 @@ export default function Dashboard() {
     };
     const handleOnDeleteRowAsset = async (index: number) => {
         console.log(index);
+        setDeleteIndex(index);
         setShowMessage(
             `You want delete row here !`
         );
         setShowModelDelete(true); // Hiện modal xác nhận
-        await refetchAsset();
+
     };
     const handleButtonComfirmModalDelete = async () => {
         const session = await getSession();
-        console.log(session);
-        const resDelete = await deleteAssetPrediction({ id: 3, token_id: session?.user.id_token || "" });
+        if (deleteIndex !== null) {
+            const resDelete = await deleteAssetPrediction({ id: deleteIndex, token_id: session?.user.id_token || "" });
+            console.log(resDelete);
+        }
+        setShowModelDelete(false);
+        await refetchAsset();
     }
     const handleButtonComfirmModal = async () => {
         const res = await fetch("/api/auth");
@@ -97,7 +102,7 @@ export default function Dashboard() {
         });
         console.log(resAsset);
         setShowModel(false); // Đóng modal xác nhậnọi lại hàm refetch để cập nhật dữ liệu
-
+        await refetchAsset();
     };
     const handleButtonCloseModal = () => {
         setShowModel(false); // Đóng modal xác nhậnọi lại hàm refetch để cập nhật dữ liệu

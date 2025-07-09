@@ -13,6 +13,7 @@ export default function TableComponent({ label, value, onDelete }: Props) {
     useEffect(() => {
         if (onDelete && selectedDeleteIndex !== null) {
             onDelete(selectedDeleteIndex);
+            setSelectedDeleteIndex(null);
         }
     }, [selectedDeleteIndex]);
     if (!Array.isArray(value) || value.length === 0) {
