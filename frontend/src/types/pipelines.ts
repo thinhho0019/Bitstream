@@ -1,5 +1,5 @@
 export interface Pipeline {
-    id: Number;
+    id: number;
     name: string;
     description?: string;
     status: string;

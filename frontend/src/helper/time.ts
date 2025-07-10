@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 
-export function formatUTCToVN(utcString: string,type_return:Number): string {
+export function formatUTCToVN(utcString: string,type_return:number): string {
   return DateTime
     .fromISO(utcString, { zone: "utc" })
     .setZone("Asia/Ho_Chi_Minh")

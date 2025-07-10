@@ -8,11 +8,13 @@ class AccountBase(BaseModel):
     name: str
     email: str
     provider: str
+    id: str
 
 
 class AccountCreate(AccountBase):
-    pass
+    refresh_token: str
+
+
 class AccountOut(AccountBase):
-    id: int
     class Config:
         from_attributes = True
