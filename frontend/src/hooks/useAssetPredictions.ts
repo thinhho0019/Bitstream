@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { AssetPrediction } from "@/types/assetPredictions";
 import { Account } from "@/types/account";
 import api from "@/services/api";
-import { json } from "stream/consumers";
 export const useAssetPrediction = () => {
     const [asset, setAsset] = useState<AssetPrediction[]>([]);
     const [loadingAsset, setLoadingAsset] = useState<boolean>(true);

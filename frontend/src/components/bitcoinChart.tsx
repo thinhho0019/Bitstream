@@ -1,6 +1,5 @@
 "use client";
-import React, { memo, useEffect, useRef } from "react";
-import { Bitcoin } from "../types/bitcoins";
+import React, { memo } from "react";
 
 function BitcoinChart({containerRef}: {containerRef: React.RefObject<HTMLDivElement>}) {
   return (

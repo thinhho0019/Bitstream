@@ -6,4 +6,5 @@ export interface AssetPrediction {
     created_at: string,
     end_time: string,
     status: string,
+    [key: string]: string | number | undefined;
 }

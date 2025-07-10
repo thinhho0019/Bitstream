@@ -28,10 +28,15 @@ def create_asset_prediction(asset: AssetPredictionCreate, db: Session = Depends(
             end_time = created_at + timedelta(hours=1)
         elif asset.expiration_time == '1D':
             end_time = created_at + timedelta(days=1)
-        elif asset.expiration_time == '1M':
+        elif asset.expiration_time == '1W':
             end_time = created_at + timedelta(weeks=1)
         elif asset.expiration_time == '1M':
             end_time = created_at + timedelta(days=30)
+        if end_time is None:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid expiration_time value. Must be one of: 1H, 1D, 1W, 1M."
+            )
         # check email exist
         db_asset_predicrection = AssetPrediction(name=asset.name,
                                                  current_value=asset.current_value,
@@ -77,9 +82,8 @@ def delete_asset_prediction(asset_id:int,db: Session = Depends(get_db), user = D
                 status_code=404,
                 detail=f"don't found asset_id"
             )
-        # db.delete(db_asset_predicrection)
-        # db.commit()
-        # get full asset
+        db.delete(db_asset_predicrection)
+        db.commit()
         return Response(status_code=status.HTTP_204_NO_CONTENT)
     except Exception as ex:
         print(f"❌ Error in asset prediction {ex}")

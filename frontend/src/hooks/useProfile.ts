@@ -1,17 +1,16 @@
 import { Account } from "@/types/account";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import Email from "next-auth/providers/email";
+
 export const useProfile = () => {
-    const [loading, setLoading] = useState<Boolean>();
+    const [loading, setLoading] = useState<boolean>();
     const [error, setError] = useState<string | null>(null);
     const [user, setUser] = useState<Account>();
-    const route = useRouter();
     const getUsetForToken = async () => {
         setLoading(true);
         const res = await fetch("/api/auth");
         if (!res.ok) {
             //fail request get token for api
+            setError("fail get user");
             return;
         }
         const data = await res.json();

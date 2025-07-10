@@ -23,7 +23,7 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
         check_email = db.query(Account).filter(Account.email == account.email).first()
         if check_email:
             return check_email
-        db_account = Account(id=account.id, email=account.email, name=account.name, image=account.image)
+        db_account = Account(id=account.id, email=account.email, name=account.name, image=account.image,refresh_token=account.refresh_token)
         db.add(db_account)
         db.commit()
         db.refresh(db_account)

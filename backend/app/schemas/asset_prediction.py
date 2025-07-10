@@ -9,8 +9,6 @@ class AssetPredictionBase(BaseModel):
     next_value: float
     status: str
     expiration_time: str
-
-
 class AssetPredictionCreate(AssetPredictionBase):
     account_id: int
 

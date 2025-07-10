@@ -14,7 +14,7 @@ export const usePipelines = () => {
             const response = await api.get<Pipeline[]>("/pipelines");
             setPipelines(response.data);
         } catch (err) {
-            setError("Failed to fetch pipelines");
+            setError("Failed to fetch pipelines" + err);
         } finally {
             setLoading(false);
         }

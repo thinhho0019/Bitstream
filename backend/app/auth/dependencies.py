@@ -8,6 +8,7 @@ GOOGLE_CLIENT_ID = settings.GOOGLE_CLIENT_ID
 
 def get_current_google_user(request: Request):
     auth_header = request.headers.get("Authorization")
+    print(auth_header)
     if not auth_header or not auth_header.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Missing token")
     token = auth_header.split(" ")[1]

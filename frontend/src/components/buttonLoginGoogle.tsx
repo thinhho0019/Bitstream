@@ -1,6 +1,6 @@
 "use client";
 import React, { memo } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 const ButtonLoginGoogle = () => {
     return (
         <button onClick={() => signIn("google")}   className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">

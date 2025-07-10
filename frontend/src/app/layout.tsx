@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope, Inter } from "next/font/google";
-import "./globals.css";
 
-import SessionProviderWrapper from "./sessionProviderWrapper";
+import { Inter } from "next/font/google";
+import "./globals.css";
 import LayoutWrapper from "./layoutWrapper";
-SessionProviderWrapper
+ 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",

@@ -1,6 +1,5 @@
 'use client';
-import { parse } from "path";
-import { useState, useEffect, memo, use } from "react";
+import { useState, useEffect} from "react";
 
 type Props = {
     label?: string;
@@ -12,7 +11,6 @@ type Props = {
 
 export default function PriceController({ label, min, max, step, onChange }: Props) {
     const [value, setValue] = useState(0);
-    const [valueInputNumber, setValueInputNumber] = useState(0);
     useEffect(() => {
         if (onChange) {
             onChange(value);
@@ -31,24 +29,24 @@ export default function PriceController({ label, min, max, step, onChange }: Pro
                 <input
                     type="text"
                     value={value}
-                    
+
                     onChange={(e) => {
                         const newVal = parseFloat(parseFloat(e.target.value).toFixed(2));
                         if (!isNaN(newVal) && min !== undefined && max !== undefined) {
                             if (newVal < min) {
                                 setValue(min);
-                                setValueInputNumber(min);
+
                                 return;
                             }
                             if (newVal > max) {
                                 setValue(max);
-                                setValueInputNumber(max);
+
                                 return
                             }
                             setValue(newVal);
-                            setValueInputNumber(newVal);
+
                         } else {
-                            setValueInputNumber(0);
+
                             setValue(0);
                         }
                     }}
