@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Float,UUID
 import datetime
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
@@ -16,5 +16,5 @@ class AssetPrediction(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     end_time = Column(DateTime)
     #one to many account with asset_predictions
-    account_id = Column(String, ForeignKey("accounts.id"), nullable=False)
+    account_id = Column(UUID(as_uuid=True), ForeignKey("accounts.id"), nullable=False)
     account = relationship("Account", back_populates="asset_predictions")

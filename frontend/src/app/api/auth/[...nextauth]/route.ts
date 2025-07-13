@@ -1,7 +1,10 @@
 import NextAuth, { JWT, NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { refreshAccessToken, SyncGoogleAccount } from "@/services/account";
+import { loginAccount, refreshAccessToken, SyncGoogleAccount } from "@/services/account";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { log } from "console";
+import axios from "axios";
+import { use } from "react";
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const ONE_HOUR_IN_MS = 60 * 60 * 1000;
 console.log(GOOGLE_CLIENT_ID)
@@ -13,6 +16,10 @@ if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: "jwt",
+    },
+    pages: {
+        signIn: "/login",
+        error: "/login",
     },
     providers: [
         GoogleProvider({
@@ -31,24 +38,36 @@ export const authOptions: NextAuthOptions = {
                 email: { label: "Email", type: "email" },
                 password: { label: "Password", type: "password" },
             },
-            authorize(credentials) {
+            async authorize(credentials) {
                 const { email, password } = credentials!
                 console.log("🔐 Authorizing with credentials:", { email, password })
-
-                // ✅ Kiểm tra tài khoản
-                if (email === "admin@gmail.com" && password === "123456") {
-                    console.log("✅ Login successful with credentials")
-                    return { id: "1", name: "Admin", email }
+                const res = await loginAccount(email, password);
+                if (!res) {
+                    console.log("❌ Login failed with credentials")
+                    return null;
                 }
-
-                // ❌ Đăng nhập thất bại → return null
-                return null
-            }
+                console.log("✅ Login successful with credentials:", res)
+                // ✅ Trả về user object nếu đăng nhập thành công
+                return {
+                    id: res.id,
+                    name: res.name,
+                    email: res.email,
+                    image: res.image || "",
+                    provider: res.provider || "email",
+                    accessToken: res.access_token,
+                    refreshToken: res.refresh_token
+                }
+            },
         }),
+        
     ],
     callbacks: {
         async jwt({ token, account, user }) {
-            console.log("🔁 JWT callback called");
+            console.log("account:", account);
+            console.log("token:", token);
+            if (account?.provider === "credentials") {
+                return token;
+            }
             if (account && user) {
                 return {
                     accessToken: account.access_token,
@@ -67,10 +86,12 @@ export const authOptions: NextAuthOptions = {
                 return token;
             }
             // Access token đã hết hạn → refresh
-            return await refreshAccessToken(token as JWT);
+            // return await refreshAccessToken(token as JWT);
+            return token;
         },
         async signIn({ profile, user, account }) {
             // ✅ Nếu là đăng nhập qua Google
+
             if (account?.provider === "google") {
                 if (!profile?.email) {
                     return false
@@ -94,8 +115,8 @@ export const authOptions: NextAuthOptions = {
             // ✅ Default fallback: cho phép đăng nhập
             return true
         },
-        async redirect({ url, baseUrl }) {
-            return url.startsWith(baseUrl) ? url : baseUrl;
+        async redirect({ baseUrl }) {
+            return `${baseUrl}/dashboard`;
         },
         async session({ session, token }) {
             session.accessToken = token.accessToken?.toString();

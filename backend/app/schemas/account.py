@@ -7,12 +7,10 @@ class AccountBase(BaseModel):
     image: str
     name: str
     email: str
+    password:str
     provider: str
-    id: str
-
-
 class AccountCreate(AccountBase):
-    refresh_token: str
+    pass
 
 
 class AccountOut(AccountBase):

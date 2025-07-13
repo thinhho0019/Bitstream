@@ -12,7 +12,6 @@ class AssetPredictionBase(BaseModel):
 class AssetPredictionCreate(AssetPredictionBase):
     account_id: int
 
-
 class AssetPredictionOut(AssetPredictionBase):
     id:int
     end_time: datetime

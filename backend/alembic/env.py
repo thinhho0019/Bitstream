@@ -5,7 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 from app.db.database import Base
-from app.models import account,bitcoin,asset_predictions,pipeline,email_verification_tokens
+from app.models import account,bitcoin,asset_predictions,pipeline,email_verification_tokens,login_session
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

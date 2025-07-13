@@ -54,9 +54,7 @@ export const refreshAccessToken = async (token: JWT) => {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
         });
-
         const refreshToken = response.data;
-
         return {
             ...token,
             id_token: refreshToken.id_token,
@@ -71,3 +69,18 @@ export const refreshAccessToken = async (token: JWT) => {
         };
     }
 };
+export const loginAccount = async (email: string, password: string) => {
+    try {
+        const response = await api.post(
+            process.env.NEXT_PUBLIC_BASE_API_URL + "/login",
+            {
+                email,
+                password,
+            }
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Error logging in account:", error);
+        throw new Error("Failed to log in account");
+    }
+}

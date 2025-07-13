@@ -9,8 +9,8 @@ class EmailVerificationToken(Base):
     __tablename__ = "email_verification_tokens"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    account_id = Column(String, ForeignKey("accounts.id"), nullable=False)
+    account_id = Column(UUID(as_uuid=True), ForeignKey("accounts.id"), nullable=False)
     token = Column(String, unique=True, nullable=False)
-    expires_at = Column(DateTime, nullable=False)
+    expires_at = Column(DateTime, default=lambda: datetime.utcnow() + timedelta(minutes=30))
     created_at = Column(DateTime, default=datetime.utcnow)
     account = relationship("Account", back_populates="email_verifications")

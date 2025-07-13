@@ -9,3 +9,6 @@ alembic
 requests
 redis
 python-dotenv
+python-jose[cryptography]
+passlib[bcrypt]
+jinja2

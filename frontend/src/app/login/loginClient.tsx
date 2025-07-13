@@ -3,13 +3,20 @@ import ButtonLoginGoogle from "@/components/buttonLoginGoogle";
 import { useState } from "react";
 import { toast } from 'sonner'
 import { signIn } from "next-auth/react"
+import { time } from "console";
+import { useRouter } from "next/navigation";
 
 export default function LoginPageClient() {
     const [email, setEmail] = useState("");
+    const router = useRouter();
     const [password, setPassword] = useState("");
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Handle form submission logic here
+        if (!email || !password) {
+            toast.error("Please enter both email and password.");
+            return;
+        }
         const res = await signIn("credentials", {
             email,
             password,
@@ -20,9 +27,8 @@ export default function LoginPageClient() {
             return;
         }
         const data = await res;
-        console.log("Login successful:", data);
         toast.success("Login successful");
-        console.log("Form submitted");
+        router.push("/dashboard");
     };
     return (
         <main className="w-full h-screen flex flex-col items-center justify-center px-4 bg-gray-50">

@@ -1,5 +1,5 @@
 // types/next-auth.d.ts
-import   { DefaultSession } from "next-auth";
+import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   interface Session {
@@ -10,6 +10,7 @@ declare module "next-auth" {
       name?: string;
       email?: string;
       image?: string;
+      privider?: string; // 👈 nếu bạn muốn lưu provider
       id_token?: string; // 👈 nếu bạn dùng id_token để gửi về backend
       providerAccountId?: string;
     } & DefaultSession["user"];
@@ -25,5 +26,6 @@ declare module "next-auth" {
     email?: string;
     image?: string;
     userId?: string;
+    privider?: string; // 👈 nếu bạn muốn lưu provider
   }
 }
