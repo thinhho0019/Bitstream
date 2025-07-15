@@ -13,7 +13,11 @@ export default function RegisterPageClient() {
     const [passwordAgain, setPasswordAgain] = useState('');
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Registering with", { email, password, passwordAgain });
+
+        if (!email || !password) {
+            toast.error("Please enter all fields.");
+            return;
+        }
         if (password !== passwordAgain) {
             toast.error("Passwords do not match. Please try again.");
             return;
@@ -50,29 +54,31 @@ export default function RegisterPageClient() {
                 </div>
                 <form className="space-y-4" onSubmit={onSubmit}>
                     <div>
-                        <label className="font-medium">Email</label>
+                        <label htmlFor="email" className="font-medium">Email</label>
                         <input
+                            id="email"
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
-                            required
+                           
                             className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                         />
                     </div>
                     <div>
-                        <label className="font-medium">Password</label>
+                        <label htmlFor="password" className="font-medium">Password</label>
                         <input
+                            id="password"
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
-                            required
+                       
                             className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                         />
                     </div>
                     <div>
-                        <label className="font-medium">Password Again</label>
+                        <label htmlFor="password_again" className="font-medium">Password Again</label>
                         <input
+                            id="password_again"
                             type="password"
                             onChange={(e) => setPasswordAgain(e.target.value)}
-                            required
                             className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                         />
                     </div>
