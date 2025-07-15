@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import RegisterPageClient from './registerClients';
 import { toast } from 'sonner';
 
-const mockPush = jest.fn();
+ 
 
 jest.mock('sonner', () => ({
     toast: {
