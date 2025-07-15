@@ -1,7 +1,5 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ButtonLoginGoogle from './buttonLoginGoogle';
-import { toast } from 'sonner';
-import { signIn } from 'next-auth/react';
 
 const mockPush = jest.fn();
 

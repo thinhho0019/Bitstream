@@ -1,13 +1,9 @@
-import NextAuth, { JWT, NextAuthOptions } from "next-auth";
+import NextAuth, {   NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { loginAccount, refreshAccessToken, SyncGoogleAccount } from "@/services/account";
+import { loginAccount,  SyncGoogleAccount } from "@/services/account";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { log } from "console";
-import axios from "axios";
-import { use } from "react";
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const ONE_HOUR_IN_MS = 60 * 60 * 1000;
-console.log(GOOGLE_CLIENT_ID)
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
     throw new Error("Google Client ID and Secret must be provided");

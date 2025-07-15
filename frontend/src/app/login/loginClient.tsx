@@ -3,7 +3,7 @@ import ButtonLoginGoogle from "@/components/buttonLoginGoogle";
 import { useState } from "react";
 import { toast } from 'sonner'
 import { signIn } from "next-auth/react"
-import { time } from "console";
+
 import { useRouter } from "next/navigation";
 
 export default function LoginPageClient() {
@@ -26,7 +26,7 @@ export default function LoginPageClient() {
             toast.error("Login failed. Please check your credentials.");
             return;
         }
-        const data = await res;
+        // const data = await res;
         toast.success("Login successful");
         router.push("/dashboard");
     };
