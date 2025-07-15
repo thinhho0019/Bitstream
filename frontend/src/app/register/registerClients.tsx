@@ -18,6 +18,21 @@ export default function RegisterPageClient() {
             toast.error("Passwords do not match. Please try again.");
             return;
         }
+        const res = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+        if (!res.ok) {
+            const errorData = await res.json();
+            toast.error(errorData.message || "Failed to register account");
+            return;
+        }
+        const data = await res.json();
+        console.log("Registration successful:", data);
+        toast.success("Registration successful");
     }
     return (
         <main className="w-full h-screen flex flex-col items-center justify-center px-4 bg-gray-50">

@@ -84,3 +84,21 @@ export const loginAccount = async (email: string, password: string) => {
         throw new Error("Failed to log in account");
     }
 }
+export const registerAccount = async (email: string, password: string) => {
+    try {
+        const response = await api.post(
+            process.env.NEXT_PUBLIC_BASE_API_URL + "/accounts",
+            {
+                email,
+                password,
+                name:"",
+                image: "",
+                provider: "email"
+            }
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Error registering account:", error);
+        throw new Error("Failed to register account");
+    }
+}

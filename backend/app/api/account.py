@@ -73,7 +73,9 @@ def login_account(data: LoginRequest, db: Session = Depends(get_db)):
 @router.post("/accounts", status_code=status.HTTP_201_CREATED)
 def create_account(account: AccountCreate, db: Session = Depends(get_db)):
     # check email exist
+
     check_email = db.query(Account).filter(account.email == Account.email).first()
+
     if check_email:
         if len(check_email.email_verifications) > 0:
             raise HTTPException(
@@ -84,14 +86,14 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=AccountMessage.ERROR_CREATE_ACCOUNT
         )
-
     try:
         if account.provider == "google":
             db_account = Account(email=account.email, name=account.name, image=account.image)
         else:
             random_name = random.sample(NAME_TEMPLATE, 1)[0]
+            print(random_name)
             db_account = Account(email=account.email, name=random_name, image=account.image,
-                                 password=hash_password(account.password),provider="email")
+                                 password=hash_password(account.password), provider="email")
             token = EmailVerificationToken(
                 token=str(uuid.uuid4()),
                 expires_at=datetime.utcnow() + timedelta(minutes=30)

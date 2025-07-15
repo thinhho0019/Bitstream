@@ -1,5 +1,4 @@
-# models/login_session.py
-from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Boolean,UUID
+from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Boolean, UUID
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app.db.database import Base
