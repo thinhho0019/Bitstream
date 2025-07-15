@@ -1,9 +1,7 @@
 'use client'
 import { useEffect, useState, useRef } from "react";
-import api from "@/services/api";
 import axios from "axios";
 import { Bitcoin } from "@/types/bitcoins";
-import { log } from "console";
 export const useBitcoins = () => {
     // Khởi tạo state
     let bitcoinBefore: number = 0.0;
@@ -21,19 +19,16 @@ export const useBitcoins = () => {
         setLoading(true);
         try {
             const response = await axios.get("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT");
-            if(response.status !== 200) {
+            if (response.status !== 200) {
                 throw new Error(`Error fetching bitcoins: ${response.statusText}`);
             }
-            console.log("Fetched bitcoins:", response.data);
             const bitcoinPrice: Bitcoin = {
                 price: parseFloat(response.data.price)
             };
-            if(bitcoinBefore > bitcoinPrice.price){
+            if (bitcoinBefore > bitcoinPrice.price) {
                 setRedOrGreen("red");
-                console.log("red");
             } else {
                 setRedOrGreen("green");
-                console.log("green");
             }
             setBitcoins(bitcoinPrice);
             bitcoinBefore = bitcoinPrice.price;
@@ -49,9 +44,8 @@ export const useBitcoins = () => {
         // Chỉ thêm script nếu chưa có
         const intervalId = setInterval(() => {
             fetchBitcoins();
-            console.log("Fetching bitcoins every 3 seconds");
         }, 3000);
-        
+
         fetchBitcoins();
         if (!document.getElementById("tradingview-widget-script")) {
             const script = document.createElement("script");
@@ -59,9 +53,9 @@ export const useBitcoins = () => {
             script.src = "https://s3.tradingview.com/tv.js";
             script.async = true;
             script.onload = () => {
-                // @ts-ignore
+                // @ts-expect-error: TradingView is loaded dynamically from external script
                 if (window.TradingView) {
-                    // @ts-ignore
+                    // @ts-expect-error: TradingView is loaded dynamically from external script
                     new window.TradingView.widget({
                         width: "100%",
                         height: 400,
@@ -81,9 +75,9 @@ export const useBitcoins = () => {
             document.body.appendChild(script);
         } else {
             // Nếu script đã có, chỉ cần khởi tạo widget
-            // @ts-ignore
+            // @ts-expect-error: TradingView is loaded dynamically from external script
             if (window.TradingView) {
-                // @ts-ignore
+                // @ts-expect-error: TradingView is loaded dynamically from external script
                 new window.TradingView.widget({
                     width: "100%",
                     height: 400,
@@ -110,5 +104,5 @@ export const useBitcoins = () => {
         };
     }, []);
 
-    return { bitcoins, loading, error, containerRef,redOrGreen, refetch: fetchBitcoins };
+    return { bitcoins, loading, error, containerRef, redOrGreen, refetch: fetchBitcoins };
 }
