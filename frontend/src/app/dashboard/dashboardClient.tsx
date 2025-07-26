@@ -10,7 +10,6 @@ import ComfirmModal from "@/components/comfirmModal";
 import React from "react";
 import TableComponent from "@/components/tableComponent";
 import { useAssetPrediction } from "@/hooks/useAssetPredictions";
-
 import { assetPredictionService, deleteAssetPrediction } from "@/services/assetPrediction";
 import { getSession } from "next-auth/react";
 
@@ -32,7 +31,6 @@ export default function Dashboard() {
     };
     const optionExpirationTime = ["1H", "1D", "1W", "1M"];
     const handlePriceChange = (value: number) => {
-        console.log(contentForm);
         setNextValue(value);
     };
     const handleButtonClickSetSchedule = async () => {
@@ -46,7 +44,6 @@ export default function Dashboard() {
         const expiration_time = contentForm.expiration_time
         const downPercent = current_value - (current_value * 0.1);
         const upPercent = current_value + (current_value * 0.1);
-        console.log(downPercent, upPercent, nextValue);
         if (nextValue > downPercent && nextValue < upPercent) {
             setShowMessage(
                 `Giá hiện tại: ${current_value}, Giá dự kiến: 
@@ -73,7 +70,6 @@ export default function Dashboard() {
         contentForm.expiration_time = optionExpirationTime[index];
     };
     const handleOnDeleteRowAsset = async (index: number) => {
-        console.log(index);
         setDeleteIndex(index);
         setShowMessage(
             `You want delete row here !`
@@ -83,8 +79,7 @@ export default function Dashboard() {
     const handleButtonComfirmModalDelete = async () => {
         const session = await getSession();
         if (deleteIndex !== null) {
-            const resDelete = await deleteAssetPrediction({ id: deleteIndex, token_id: session?.user.id_token || "" });
-            console.log(resDelete);
+            await deleteAssetPrediction({ id: deleteIndex, token_id: session?.user.id_token || "" });
         }
         setShowModelDelete(false);
         await refetchAsset();
@@ -97,22 +92,22 @@ export default function Dashboard() {
         }
         const data = await res.json();
         const userId = data.userId;
+        const id_token = data.id_token;
         const current_value = parseFloat(contentForm.current_value as string);
         const expiration_time = contentForm.expiration_time
-        console.log(data);
         setShowMessage(
             `Giá hiện tại: ${current_value}, Giá dự kiến: 
             ${nextValue}, Hết hạn yêu cầu: ${expiration_time}`
         );
-        const resAsset = await assetPredictionService({
+        await assetPredictionService({
             name: "bitcoin",
+            id_token: id_token,
             current_value: current_value,
             next_value: nextValue, // ví dụ, cần truyền đủ nếu hàm yêu cầu
             expiration_time: expiration_time, // ví dụ ISO format
             account_id: userId,
             status: "pending",
         });
-        console.log(resAsset);
         setShowModel(false); // Đóng modal xác nhậnọi lại hàm refetch để cập nhật dữ liệu
         await refetchAsset();
     };
@@ -137,8 +132,6 @@ export default function Dashboard() {
                             <div className="flex">
                                 <span>Bitcoin Price</span>
                                 <p className="flex items-center text-white text-sm font-medium sm:text-base space-x-1 relative group ml-1">
-
-
                                     {/* ICON */}
                                     <svg
                                         className="w-5 h-5 text-gray-300 cursor-pointer"
@@ -154,7 +147,6 @@ export default function Dashboard() {
                                             d="M9.529 9.988a2.502 2.502 0 1 1 5 .191A2.441 2.441 0 0 1 12 12.582V14m-.01 3.008H12M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                                         />
                                     </svg>
-
                                     {/* TOOLTIP khi hover */}
                                     <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
                                         Collect data from Binance exchange

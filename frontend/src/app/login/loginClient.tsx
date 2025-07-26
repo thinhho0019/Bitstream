@@ -1,14 +1,16 @@
 'use client';
 import ButtonLoginGoogle from "@/components/buttonLoginGoogle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from 'sonner'
 import { signIn } from "next-auth/react"
-
+import { getFingerprint } from '@/helper/fingerPrints'
+import { useSearchParams } from 'next/navigation';
 import { useRouter } from "next/navigation";
-
 export default function LoginPageClient() {
     const [email, setEmail] = useState("");
+    const searchParams = useSearchParams();
     const router = useRouter();
+    const [hasMounted, setHasMounted] = useState(false);
     const [password, setPassword] = useState("");
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -17,19 +19,42 @@ export default function LoginPageClient() {
             toast.error("Please enter both email and password.");
             return;
         }
+        const resultPrintFingers = await getFingerprint();
+        console.log(resultPrintFingers);
+        if (!resultPrintFingers) {
+            toast.error("Failed to retrieve fingerprint.");
+            return;
+        }
         const res = await signIn("credentials", {
             email,
             password,
+            finger_print: resultPrintFingers,
             redirect: false,
         });
         if (!res || res.error) {
             toast.error("Login failed. Please check your credentials.");
             return;
         }
-        // const data = await res;
+        const data = await res;
+        if (!data || !data.ok) {
+            toast.error("Login failed. Please check your credentials.");
+            return;
+        }
+        if (!Object.hasOwn(data, "access_token")) {
+            toast.error("Login failed. Please check your credentials.");
+        }
         toast.success("Login successful");
         router.push("/dashboard");
     };
+    useEffect(() => {
+        setHasMounted(true);
+    }, []);
+    useEffect(() => {
+        const paramError = searchParams.get("error");
+        if (paramError) {
+            toast.error(paramError);
+        }
+    }, [hasMounted, searchParams]);
     return (
         <main className="w-full h-screen flex flex-col items-center justify-center px-4 bg-gray-50">
             <div className="max-w-sm w-full text-gray-600 space-y-8">
@@ -51,7 +76,7 @@ export default function LoginPageClient() {
                             type="email"
                             id="email"
                             onChange={(e) => setEmail(e.target.value)}
-                            
+
                             className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                         />
                     </div>
@@ -61,7 +86,7 @@ export default function LoginPageClient() {
                             type="password"
                             id="password"
                             onChange={(e) => setPassword(e.target.value)}
-                     
+
                             className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                         />
                     </div>
@@ -78,7 +103,7 @@ export default function LoginPageClient() {
                         Or continue with
                     </p>
                 </div>
-                <div  className="space-y-4 text-sm font-medium">
+                <div className="space-y-4 text-sm font-medium">
                     <ButtonLoginGoogle />
                 </div>
                 <div className="text-center">

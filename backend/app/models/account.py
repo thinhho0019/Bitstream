@@ -1,8 +1,11 @@
-from sqlalchemy import Column, Float, DateTime, Integer, String, Boolean, UUID
-from sqlalchemy.sql import func
-from app.db.database import Base
-from sqlalchemy.orm import relationship
 import uuid
+
+from sqlalchemy import UUID, Boolean, Column, DateTime, Float, Integer, String
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+
+from app.db.database import Base
+
 
 class Account(Base):
     __tablename__ = "accounts"
@@ -16,4 +19,9 @@ class Account(Base):
 
     asset_predictions = relationship("AssetPrediction", back_populates="account")
     login_sessions = relationship("LoginSession", back_populates="account")
-    email_verifications = relationship("EmailVerificationToken", back_populates="account", cascade="all, delete-orphan")
+    email_verifications = relationship(
+        "EmailVerificationToken", back_populates="account", cascade="all, delete-orphan"
+    )
+    messages = relationship(
+        "Message", back_populates="account", cascade="all, delete-orphan"
+    )

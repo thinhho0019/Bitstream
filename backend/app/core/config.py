@@ -10,6 +10,11 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_SECRET: str
     EMAIL_ADDRESS: str
     EMAIL_PASSWORD: str
+    HOST_REDIS: str
+    PORT_REDIS: int
+    NUMBER_DB_REDIS: int
+    DASHBOARD_URL: str
+    KEY_GEMINI: str
 
     class Config:
         env_file = ".env"  # tự động đọc file .env

@@ -6,6 +6,7 @@ declare module "next-auth" {
     accessToken?: string;
     refreshToken?: string;
     expires?: string;
+    provider?: string; // 👈 nếu bạn muốn lưu provider
     user: {
       name?: string;
       email?: string;
@@ -13,6 +14,7 @@ declare module "next-auth" {
       privider?: string; // 👈 nếu bạn muốn lưu provider
       id_token?: string; // 👈 nếu bạn dùng id_token để gửi về backend
       providerAccountId?: string;
+      account_id?: string; // 👈 nếu bạn muốn lưu account_id
     } & DefaultSession["user"];
   }
 
@@ -24,8 +26,9 @@ declare module "next-auth" {
     providerAccountId?: string;
     name?: string;
     email?: string;
+    picture?: string;
     image?: string;
     userId?: string;
-    privider?: string; // 👈 nếu bạn muốn lưu provider
+    provider?: string; // 👈 nếu bạn muốn lưu provider
   }
 }

@@ -2,6 +2,7 @@ import api from "@/services/api";
 import { AssetPredictionResponse } from "@/types/assetPredictionResponse";
 export const assetPredictionService = async ({
     name,
+    id_token,
     current_value,
     next_value,
     expiration_time,
@@ -9,6 +10,7 @@ export const assetPredictionService = async ({
     status,
 }: {
     name: string;
+    id_token?: string;
     current_value: number;
     next_value: number;
     expiration_time: string;
@@ -16,7 +18,7 @@ export const assetPredictionService = async ({
     status: string;
 }) => {
     try {
-        const response = await api.post("/asset-predictions", <AssetPredictionResponse>{
+        console.log("Asset prediction created successfully:",{
             name,
             current_value,
             next_value,
@@ -24,6 +26,19 @@ export const assetPredictionService = async ({
             account_id,
             status,
         });
+        const response = await api.post("/asset-predictions", <AssetPredictionResponse>{
+            name,
+            current_value,
+            next_value,
+            expiration_time,
+            account_id,
+            status,
+        },{
+            headers: {
+                Authorization: `Bearer ${id_token || ""}`,
+            },
+        });
+        
         return response.data as AssetPredictionResponse;
     } catch (error) {
         console.error("Error creating asset prediction:", error);

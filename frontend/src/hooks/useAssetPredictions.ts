@@ -19,6 +19,7 @@ export const useAssetPrediction = () => {
             name: data.name,
             id: data.userId
         };
+        console.log("dataUser", dataUser);
         return dataUser;
     }
     const fetchAsset = async () => {

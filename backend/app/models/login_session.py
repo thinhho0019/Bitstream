@@ -1,7 +1,11 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Boolean, UUID
-from sqlalchemy.orm import relationship
 from datetime import datetime
+
+from sqlalchemy import (UUID, Boolean, Column, DateTime, ForeignKey, Integer,
+                        String)
+from sqlalchemy.orm import relationship
+
 from app.db.database import Base
+
 
 class LoginSession(Base):
     __tablename__ = "login_sessions"
@@ -13,5 +17,5 @@ class LoginSession(Base):
     ip_address = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     is_active = Column(Boolean, default=True)
-
+    finger_print = Column(String, index=True)
     account = relationship("Account", back_populates="login_sessions")

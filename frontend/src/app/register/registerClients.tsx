@@ -13,7 +13,6 @@ export default function RegisterPageClient() {
     const [passwordAgain, setPasswordAgain] = useState('');
     const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         if (!email || !password) {
             toast.error("Please enter all fields.");
             return;
@@ -34,8 +33,7 @@ export default function RegisterPageClient() {
             toast.error(errorData.message || "Failed to register account");
             return;
         }
-        const data = await res.json();
-        console.log("Registration successful:", data);
+        // const data = await res.json();
         toast.success("Registration successful");
     }
     return (

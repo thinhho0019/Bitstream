@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import Optional
 from datetime import datetime
+from typing import Optional
+
+from pydantic import BaseModel
 
 
 class AssetPredictionBase(BaseModel):
@@ -9,11 +10,15 @@ class AssetPredictionBase(BaseModel):
     next_value: float
     status: str
     expiration_time: str
+
+
 class AssetPredictionCreate(AssetPredictionBase):
-    account_id: int
+    account_id: str
+
 
 class AssetPredictionOut(AssetPredictionBase):
-    id:int
+    id: int
     end_time: datetime
+
     class Config:
         from_attributes = True

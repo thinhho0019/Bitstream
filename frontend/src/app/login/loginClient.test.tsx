@@ -2,8 +2,16 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import LoginPageClient from './page';
 import { toast } from 'sonner';
 import { signIn } from 'next-auth/react';
-
+// import { useRouter } from 'next/navigation';
 const mockPush = jest.fn();
+jest.mock('@fingerprintjs/fingerprintjs', () => ({
+  load: async () => ({
+    get: async () => ({
+      visitorId: 'mocked-visitor-id'
+    })
+  })
+}));
+jest.mock('@fingerprintjs/fingerprintjs');
 
 jest.mock("next-auth/react", () => ({
     signIn: jest.fn(),
@@ -46,6 +54,7 @@ describe('Login test', () => {
             expect(signIn).toHaveBeenCalledWith("credentials", {
                 email,
                 password,
+                finger_print: expect.any(String),
                 redirect: false,
             });
         });  
@@ -67,7 +76,7 @@ describe('Login test', () => {
         fireEvent.change(screen.getByLabelText('Password'), { target: { value: "admin123" } });
         fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
         await waitFor(() => {
-            expect(mockPush).toHaveBeenCalledWith("/dashboard");
+            expect(toast.success).toHaveBeenCalledWith("Login successful");
         });
     });
 });

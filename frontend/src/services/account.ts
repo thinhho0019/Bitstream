@@ -1,5 +1,6 @@
 import api from "@/services/api";
 import axios from "axios";
+import { access } from "fs";
 import { JWT } from "next-auth";
 export const SyncGoogleAccount = async ({
     id,
@@ -16,6 +17,14 @@ export const SyncGoogleAccount = async ({
         provider: string;
     }) => {
     try {
+        console.log("Syncing Google account with data:", {
+            id,
+            refresh_token,
+            email,
+            name,
+            image,
+            provider
+        }); 
         const response = await api.post("/accounts", {
             id,
             refresh_token,
@@ -32,14 +41,34 @@ export const SyncGoogleAccount = async ({
 }
 export const refreshAccessToken = async (token: JWT) => {
     try {
-        console.log("expire token");
-        console.log(token);
-        console.log({
-            client_id: process.env.GOOGLE_CLIENT_ID,
-            client_secret: process.env.GOOGLE_CLIENT_SECRET,
-            grant_type: "refresh_token",
-            refresh_token: token.refreshToken,
-        });
+        console.log("🔄 Refreshing access token", token);
+        if (token.provider === "email") {
+            const url = process.env.NEXT_PUBLIC_BASE_API_URL + "/refresh-token";
+            const refresh_token = token.refreshToken;
+            if (!refresh_token) {
+                console.error("❌ No refresh token available");
+                return {
+                    ...token,
+                };
+            }
+            try {
+                console.log("🔄 Refreshing access token with refresh_token:", refresh_token);
+                const response = await api.post(url, { params: { refresh_token: refresh_token } });
+                const refreshToken = response.data;
+                return {
+                    ...token,
+                    accessToken: refreshToken.access_token,
+                    accessTokenExpires: refreshToken.exp,
+                    refreshToken: token.refreshToken,
+                }
+            } catch (error) {
+                console.error("❌ Error in refreshAccessToken:", error);
+                return {
+                    ...token,
+                };
+            }
+
+        }
         const url = "https://oauth2.googleapis.com/token";
         const params = {
             client_id: process.env.GOOGLE_CLIENT_ID,
@@ -69,13 +98,14 @@ export const refreshAccessToken = async (token: JWT) => {
         };
     }
 };
-export const loginAccount = async (email: string, password: string) => {
+export const loginAccount = async (email: string, password: string, finger_print: string) => {
     try {
         const response = await api.post(
             process.env.NEXT_PUBLIC_BASE_API_URL + "/login",
             {
                 email,
                 password,
+                finger_print
             }
         );
         return response.data;
@@ -91,7 +121,7 @@ export const registerAccount = async (email: string, password: string) => {
             {
                 email,
                 password,
-                name:"",
+                name: "",
                 image: "",
                 provider: "email"
             }
@@ -100,5 +130,17 @@ export const registerAccount = async (email: string, password: string) => {
     } catch (error) {
         console.error("Error registering account:", error);
         throw new Error("Failed to register account");
+    }
+}
+export const getInformationAccount = async (access_token: string) => {
+    try {
+        const response = await api.get(
+            process.env.NEXT_PUBLIC_BASE_API_URL + `/get-infor-user`,
+            { headers: { Authorization: `Bearer ${access_token}` } }
+        );
+        return response.data;
+    } catch (error) {
+        console.error("Error getting account information:", error);
+        throw new Error("Failed to get account information");
     }
 }

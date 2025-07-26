@@ -1,8 +1,12 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Float,UUID
 import datetime
-from sqlalchemy.sql import func
+
+from sqlalchemy import (UUID, Column, DateTime, Float, ForeignKey, Integer,
+                        String)
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+
 from app.db.database import Base  # Giả sử bạn có Base trong database.py
+
 
 class AssetPrediction(Base):
     __tablename__ = "asset_predictions"
@@ -15,6 +19,6 @@ class AssetPrediction(Base):
     status = Column(String, nullable=False, default="pending")  # pending, success, fail
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     end_time = Column(DateTime)
-    #one to many account with asset_predictions
+    # one to many account with asset_predictions
     account_id = Column(UUID(as_uuid=True), ForeignKey("accounts.id"), nullable=False)
     account = relationship("Account", back_populates="asset_predictions")

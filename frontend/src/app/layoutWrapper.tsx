@@ -14,7 +14,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     <>
       {lastSegment !== "login" && lastSegment != "register" && <NavBar />}
       <SessionProviderWrapper>{children}</SessionProviderWrapper>
-      {lastSegment !== "login" && lastSegment != "register" && <BottomNavigation />}
+      {lastSegment !== "login" && lastSegment != "register" && lastSegment != "chatbox" && <BottomNavigation />}
       <Toaster position="bottom-center" richColors />
     </>
   );
