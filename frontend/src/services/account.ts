@@ -1,6 +1,5 @@
 import api from "@/services/api";
 import axios from "axios";
-import { access } from "fs";
 import { JWT } from "next-auth";
 export const SyncGoogleAccount = async ({
     id,

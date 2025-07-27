@@ -14,7 +14,7 @@ from app.auth.jwt import (create_access_token, create_refresh_token,
                           decode_access_token)
 from app.core.message.account_message import AccountMessage
 from app.db.database import SessionLocal
-from app.jobs.btc_alert import notify_btc
+
 from app.models import LoginSession
 from app.models.account import Account
 from app.models.email_verification_tokens import EmailVerificationToken
@@ -108,7 +108,6 @@ def login_account(data: LoginRequest, request: Request, db: Session = Depends(ge
         access_token = create_access_token({"id": str(db_account.id), "type": "email"})
         data_response["refresh_token"] = refresh_token
         data_response["access_token"] = access_token
-        print(access_token)
         for ses in login_sessions:
             if ses.finger_print == finger_print:
                 return data_response
@@ -132,7 +131,7 @@ def login_account(data: LoginRequest, request: Request, db: Session = Depends(ge
 
 @router.get("/get-infor-user", response_model=AccountGetInforOut)
 def get_infor_account(
-    user=Depends(get_current_google_user), db: Session = Depends(get_db)
+        user=Depends(get_current_google_user), db: Session = Depends(get_db)
 ):
     try:
         if "id" not in user:
@@ -141,6 +140,8 @@ def get_infor_account(
                 detail=AccountMessage.ERROR_GET_INFOR_ACCOUNT,
             )
         db_account = db.query(Account).filter(Account.id == user["id"]).first()
+        if not db_account:
+            raise
         return db_account
     except Exception as ex:
         raise HTTPException(
@@ -196,7 +197,7 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
                 to_email=account.email,
                 subject="Bitstream Verify Email",
                 content=f"<p>Click to verify your Bitstream account:</p>"
-                f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
+                        f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
                 html=True,
             )
         db.add(db_account)
@@ -232,7 +233,7 @@ async def refresh_token_account(req: LoginRefreshTokenRequest):
 
 @router.get("/verify-email", response_class=HTMLResponse)
 async def verify_email(
-    request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
+        request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
 ):
     message_success = {
         "result": "success",

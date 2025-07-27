@@ -1,10 +1,10 @@
-Vào thời điểm 2025-07-26T05:51:23.050576, giá BTCUSDT là 117446.94000000 USDT.
+Vào thời điểm 2025-07-27T17:10:29.858097, giá BTCUSDT là 119134.22000000 USDT.
 
-Trong 24 giờ qua, BTC dao động từ 114723.16000000 đến 117750.00000000 USDT. Khối lượng giao dịch đạt 25086.91708000 BTC (tương đương 2907873084.42308620 USDT).
+Trong 24 giờ qua, BTC dao động từ 117825.50000000 đến 119540.01000000 USDT. Khối lượng giao dịch đạt 8174.47420000 BTC (tương đương 968426895.72070580 USDT).
 
-Orderbook: Giá mua cao nhất (bid) là 1.55982000 BTC tại 117446.94000000 USDT, giá bán thấp nhất (ask) là 12.69130000 BTC tại 117446.95000000 USDT.
+Orderbook: Giá mua cao nhất (bid) là 4.85707000 BTC tại 119134.21000000 USDT, giá bán thấp nhất (ask) là 3.97192000 BTC tại 119134.22000000 USDT.
 
-Nến gần nhất: mở cửa tại 117496.80000000, cao nhất 117541.19000000, thấp nhất 117419.83000000, đóng cửa tại 117446.94000000, với khối lượng 140.12561000 BTC.
+Nến gần nhất: mở cửa tại 119090.46000000, cao nhất 119218.32000000, thấp nhất 118975.65000000, đóng cửa tại 119134.22000000, với khối lượng 139.52013000 BTC.
 
 Thông tin về bitstream: bitstream là nền tảng cập nhật thông báo tin tức về bitcoin nhanh chống tiện lợi, phù hợp với nhiều traderbằng cách đăng nhập tài khoản gồm email để nhận thông báo các chỉ báo sớm nhất có thể
 

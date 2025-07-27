@@ -1,9 +1,15 @@
-import LoginPageClient from "./loginClient";
 
+import LoginPageClient from "./loginClient";
+import { Suspense } from 'react';
 export const metadata = {
     title: 'Login Page',
     describe: 'Bitstream follow bitcoin every where'
 };
 export default function LoginPage() {
-    return <LoginPageClient />;
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LoginPageClient />;
+        </Suspense>
+    )
 }

@@ -22,8 +22,8 @@ jest.mock('sonner', () => ({
         success: jest.fn(),
     },
 }));
-
 jest.mock('next/navigation', () => ({
+    useSearchParams: jest.fn(() => new URLSearchParams('code=abc')),
     useRouter: () => ({
         push: mockPush,
     }),

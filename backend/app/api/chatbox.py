@@ -29,9 +29,9 @@ def get_db():
 
 @router.post("/assistants/bitcoin")
 def ask_chat_box(
-    req: ChatRequest,
-    user=Depends(get_current_google_user),
-    db: Session = Depends(get_db),
+        req: ChatRequest,
+        user=Depends(get_current_google_user),
+        db: Session = Depends(get_db),
 ):
     # log lại lịch sử nếu cần: req.user_id, req.conversation_id
     result = qa_system.ask(req.message)  # hoặc pipe.invoke nếu dùng RAG pipeline
@@ -40,13 +40,13 @@ def ask_chat_box(
     db_message_user = Message(
         sender="user", content=req.message, account_id=req.user_id, timestamp=now
     )
-    db_messsage_assistants = Message(
+    db_message_assistants = Message(
         sender="assistant",
         content=result,
         account_id=req.user_id,
         timestamp=now + timedelta(microseconds=1),
     )
 
-    db.add_all([db_message_user, db_messsage_assistants])
+    db.add_all([db_message_user, db_message_assistants])
     db.commit()
     return {"role": "assistant", "assistant": "bitcoin_bot", "response": result}

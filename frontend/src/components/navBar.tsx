@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useProfile } from "@/hooks/useProfile";
 export default function NavBar() {
-    const { loading, user } = useProfile();
+    const { user } = useProfile();
     return (
         <nav className="p-4" style={{ backgroundColor: '#0a0a0a' }}>
             <div className="container mx-auto flex justify-between items-center">

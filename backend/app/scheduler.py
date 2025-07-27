@@ -23,13 +23,13 @@ def start_scheduler():
     }
     scheduler.configure(jobstores)
 
-    # scheduler.add_job(
-    #     notify_btc,
-    #     trigger='interval',
-    #     seconds=60,
-    #     id="monitor_btc_price",
-    #     max_instances=5
-    # )
+    scheduler.add_job(
+        notify_btc,
+        trigger='interval',
+        seconds=60,
+        id="monitor_btc_price",
+        max_instances=5
+    )
 
     scheduler.add_job(
         update_price_btc,

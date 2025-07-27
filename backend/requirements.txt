@@ -17,7 +17,10 @@ langchain
 redis
 transformers
 protobuf
-faiss-gpu
+# Chọn 1 trong 2 dòng sau:
+faiss-cpu         # <- An toàn, chạy trên mọi máy
+# faiss-gpu       # <- Dùng nếu chắc bạn có CUDA môi trường Linux
+
 openai
 pytest
 pytest-asyncio
@@ -26,17 +29,17 @@ black
 isort
 flake8
 mypy
+
+# Cẩn thận với 2 dòng sau:
+# Chỉ dùng nếu bạn chắc môi trường hỗ trợ CUDA 11/12:
 bitsandbytes
+auto-gptq
+
 optimum
 langchain-community
 sentence-transformers
 google-generativeai
 langchain-google-genai
-auto-gptq
 
+# Chọn URL index phù hợp:
 --extra-index-url https://download.pytorch.org/whl/cu126
-
-torch
-torchvision
-torchaudio
-

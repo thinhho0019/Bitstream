@@ -3,6 +3,10 @@ import RegisterPageClient from './registerClients';
 import { toast } from 'sonner';
 
 const mockFetch = jest.fn();
+jest.mock('next/navigation', () => ({
+  useSearchParams: jest.fn(() => new URLSearchParams('code=abc')),
+  useRouter: () => ({ push: jest.fn() }),
+}));
 
 jest.mock('sonner', () => ({
     toast: {

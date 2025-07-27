@@ -1,7 +1,7 @@
 // app/chat/page.tsx (Next.js 13+ App Router)
 'use client'
 
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button_';
 import { Card, CardContent } from '@/components/ui/card';
@@ -22,11 +22,7 @@ export default function ChatBoxClient() {
     const dragStartX = useRef(0);
     const dragCurrentX = useRef(0);
     const router = useRouter();
-    const [recommnedation, setRecommendation] = useState<string[] | null>([
-        "How price of bitcoin today?",
-        "What is the current price of Bitcoin?",
-        "what is bitstream?"
-    ]);
+    const [recommnedation, setRecommendation] = useState<string[] | null>([]);
     useEffect(() => {
         const fetchUserId = async () => {
             const res = await fetch("/api/auth");
@@ -38,6 +34,11 @@ export default function ChatBoxClient() {
             setUserId(data.userId);
             setToken(data.id_token);
         };
+        setRecommendation([
+            "How price of bitcoin today?",
+            "What is the current price of Bitcoin?",
+            "what is bitstream?"
+        ]);
         fetchUserId();
         const interval = setInterval(() => {
             fetchUserId();
@@ -68,6 +69,7 @@ export default function ChatBoxClient() {
             }
             setMessages((prev) => [...prev, { role: 'assistant', content: res.response }]);
         } catch (err) {
+            console.error("Error calling chat API:", err);
             setMessages((prev) => [...prev, { role: 'assistant', content: '❌ Lỗi kết nối server.' }]);
         } finally {
             setLoading(false);
