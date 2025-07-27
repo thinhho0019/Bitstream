@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
-from app.db.database import SessionLocal
 from sqlalchemy import desc
+from sqlalchemy.orm import Session
+
+from app.db.database import SessionLocal
 from app.models.bitcoin import BitcoinPrice
 from app.schemas.bitcoin import BitcoinCreate, BitcoinOut
 
@@ -28,7 +29,7 @@ def create_bitcoin_price(bitcoin: BitcoinCreate, db: Session = Depends(get_db)):
         print(f"❌ Error in list_bitcoin {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Error retrieving bitcoin: {str(e)}"
+            detail=f"Error retrieving bitcoin: {str(e)}",
         )
 
 
@@ -36,16 +37,17 @@ def create_bitcoin_price(bitcoin: BitcoinCreate, db: Session = Depends(get_db)):
 def get_bitcoin_price(db: Session = Depends(get_db)):
     try:
         # bitcoin_current = db.query(BitcoinPrice).order_by(desc(BitcoinPrice.timestamp)).limit(100).all()[::-1]
-        bitcoin_current = db.query(BitcoinPrice).order_by(desc(BitcoinPrice.timestamp)).first()
+        bitcoin_current = (
+            db.query(BitcoinPrice).order_by(desc(BitcoinPrice.timestamp)).first()
+        )
         if not bitcoin_current:
             raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="No bitcoin price found"
+                status_code=status.HTTP_404_NOT_FOUND, detail="No bitcoin price found"
             )
         return bitcoin_current
     except Exception as e:
         print(f"❌ Error in list_bitcoin {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Error retrieving bitcoin: {str(e)}"
+            detail=f"Error retrieving bitcoin: {str(e)}",
         )

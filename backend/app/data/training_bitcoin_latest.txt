@@ -1,0 +1,37 @@
+Vào thời điểm 2025-07-27T17:10:29.858097, giá BTCUSDT là 119134.22000000 USDT.
+
+Trong 24 giờ qua, BTC dao động từ 117825.50000000 đến 119540.01000000 USDT. Khối lượng giao dịch đạt 8174.47420000 BTC (tương đương 968426895.72070580 USDT).
+
+Orderbook: Giá mua cao nhất (bid) là 4.85707000 BTC tại 119134.21000000 USDT, giá bán thấp nhất (ask) là 3.97192000 BTC tại 119134.22000000 USDT.
+
+Nến gần nhất: mở cửa tại 119090.46000000, cao nhất 119218.32000000, thấp nhất 118975.65000000, đóng cửa tại 119134.22000000, với khối lượng 139.52013000 BTC.
+
+Thông tin về bitstream: bitstream là nền tảng cập nhật thông báo tin tức về bitcoin nhanh chống tiện lợi, phù hợp với nhiều traderbằng cách đăng nhập tài khoản gồm email để nhận thông báo các chỉ báo sớm nhất có thể
+
+Thông tin tổng quan:
+Bitcoin là gì?: Bitcoin là một loại tiền mã hóa phi tập trung được tạo ra vào năm 2009 bởi một người hoặc nhóm người có biệt danh là Satoshi Nakamoto.
+Ethereum là gì?: Ethereum là một nền tảng mã nguồn mở dựa trên blockchain có tính năng hợp đồng thông minh (smart contract).
+Làm sao để mua Bitcoin?: Bạn có thể mua Bitcoin thông qua các sàn giao dịch như Binance, Coinbase hoặc Kraken. Đăng ký tài khoản, xác minh danh tính và thực hiện giao dịch.
+Ví lưu trữ Bitcoin là gì?: Ví Bitcoin là một phần mềm hoặc thiết bị phần cứng dùng để lưu trữ khóa riêng và quản lý tài sản Bitcoin của bạn.
+Giá Bitcoin hôm nay là bao nhiêu?: Giá Bitcoin thay đổi liên tục. Bạn có thể kiểm tra trên CoinMarketCap hoặc sàn giao dịch bạn đang sử dụng.
+Blockchain hoạt động như thế nào?: Blockchain là một chuỗi khối chứa các khối dữ liệu được liên kết bằng mã hóa. Mỗi khối chứa thông tin giao dịch và được xác nhận bởi mạng lưới.
+Altcoin là gì?: Altcoin là bất kỳ loại tiền mã hóa nào ngoài Bitcoin, ví dụ như Ethereum, Cardano, Solana, v.v.
+Stablecoin là gì?: Stablecoin là loại tiền mã hóa được gắn với giá trị ổn định như USD, ví dụ USDT, USDC, DAI.
+Ví lạnh và ví nóng khác nhau thế nào?: Ví lạnh lưu trữ offline (như Ledger, Trezor), còn ví nóng luôn kết nối internet (như Trust Wallet, MetaMask).
+KYC trong crypto là gì?: KYC (Know Your Customer) là quy trình xác minh danh tính người dùng khi đăng ký tài khoản sàn giao dịch.
+Token và coin khác gì nhau?: Coin có blockchain riêng (BTC, ETH), còn token chạy trên blockchain của coin khác (ví dụ: USDT chạy trên Ethereum).
+Smart contract là gì?: Smart contract là hợp đồng thông minh tự động chạy trên blockchain khi điều kiện được đáp ứng, không cần trung gian.
+NFT là gì?: NFT (Non-Fungible Token) là token không thể thay thế, thường đại diện cho tài sản kỹ thuật số như ảnh, nhạc, game item.
+Ví MetaMask có dùng được trên điện thoại không?: Có, MetaMask hỗ trợ cả trình duyệt Chrome và ứng dụng trên điện thoại iOS, Android.
+Sàn DEX là gì?: Sàn DEX (Decentralized Exchange) là sàn giao dịch phi tập trung, không cần trung gian, ví dụ như Uniswap, PancakeSwap.
+Slippage là gì khi swap token?: Slippage là độ lệch giá giữa giá bạn thấy và giá thực tế khi giao dịch token, đặc biệt phổ biến trên sàn DEX.
+Gas fee là gì?: Gas fee là phí trả cho mạng blockchain để xử lý giao dịch, ví dụ mạng Ethereum có gas fee cao khi tắc nghẽn.
+Tôi bị mất coin khi gửi sai mạng, có lấy lại được không?: Nếu bạn gửi coin sai mạng (ví dụ gửi BEP20 vào ví ERC20), khả năng lấy lại rất thấp và tùy vào sàn/địa chỉ đích.
+TVL trong DeFi là gì?: TVL (Total Value Locked) là tổng số tài sản bị khóa trong các giao thức DeFi để farming, lending, staking.
+Airdrop là gì?: Airdrop là hình thức phát miễn phí token cho người dùng, thường để quảng bá dự án mới.
+ICO là gì?: ICO (Initial Coin Offering) là hình thức gọi vốn cho dự án tiền mã hóa bằng cách bán token lần đầu cho công chúng.
+Phân biệt BEP20 và ERC20?: ERC20 là chuẩn token của Ethereum, BEP20 là chuẩn của Binance Smart Chain. Chúng không tương thích trực tiếp.
+Tôi nên dùng ví nào để lưu trữ NFT?: Bạn có thể dùng MetaMask, Trust Wallet, hoặc ví chuyên dụng như Phantom nếu NFT trên Solana.
+DEX nào phổ biến nhất?: Uniswap (Ethereum) và PancakeSwap (BSC) là hai sàn DEX phổ biến nhất hiện nay.
+Có thể kiếm tiền từ crypto mà không đầu tư không?: Có, bạn có thể tham gia airdrop, bounty, testnet, hoặc viết bài, làm nội dung crypto để kiếm token miễn phí.
+Coin nào tiềm năng trong năm nay?: Tùy xu hướng thị trường, nhưng ETH, SOL, ARB, LDO và các token DePIN, AI thường được quan tâm.

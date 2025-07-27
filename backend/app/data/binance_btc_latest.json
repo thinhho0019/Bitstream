@@ -1,0 +1,522 @@
+{
+  "timestamp": "2025-07-27T17:10:29.858097",
+  "price": {
+    "symbol": "BTCUSDT",
+    "price": "119134.22000000"
+  },
+  "stats_24h": {
+    "symbol": "BTCUSDT",
+    "priceChange": "1104.71000000",
+    "priceChangePercent": "0.936",
+    "weightedAvgPrice": "118469.62532718",
+    "prevClosePrice": "118029.51000000",
+    "lastPrice": "119134.22000000",
+    "lastQty": "0.00684000",
+    "bidPrice": "119134.21000000",
+    "bidQty": "4.85707000",
+    "askPrice": "119134.22000000",
+    "askQty": "3.97208000",
+    "openPrice": "118029.51000000",
+    "highPrice": "119540.01000000",
+    "lowPrice": "117825.50000000",
+    "volume": "8174.47420000",
+    "quoteVolume": "968426895.72070580",
+    "openTime": 1753549831001,
+    "closeTime": 1753636231001,
+    "firstId": 5114068024,
+    "lastId": 5114965510,
+    "count": 897487
+  },
+  "orderbook": {
+    "lastUpdateId": 73551761697,
+    "bids": [
+      [
+        "119134.21000000",
+        "4.85707000"
+      ],
+      [
+        "119134.17000000",
+        "0.00010000"
+      ],
+      [
+        "119134.16000000",
+        "0.02919000"
+      ],
+      [
+        "119134.01000000",
+        "0.00010000"
+      ],
+      [
+        "119134.00000000",
+        "0.02020000"
+      ]
+    ],
+    "asks": [
+      [
+        "119134.22000000",
+        "3.97192000"
+      ],
+      [
+        "119134.88000000",
+        "0.00010000"
+      ],
+      [
+        "119134.89000000",
+        "0.28011000"
+      ],
+      [
+        "119134.90000000",
+        "0.30236000"
+      ],
+      [
+        "119135.41000000",
+        "0.00005000"
+      ]
+    ]
+  },
+  "klines": [
+    [
+      1753552800000,
+      "118039.99000000",
+      "118099.99000000",
+      "117941.96000000",
+      "118095.15000000",
+      "195.55155000",
+      1753556399999,
+      "23083368.64573190",
+      24269,
+      "97.20956000",
+      "11474527.94958490",
+      "0"
+    ],
+    [
+      1753556400000,
+      "118095.16000000",
+      "118297.35000000",
+      "118040.00000000",
+      "118232.11000000",
+      "364.90102000",
+      1753559999999,
+      "43111428.52595170",
+      26617,
+      "233.06167000",
+      "27535176.31263290",
+      "0"
+    ],
+    [
+      1753560000000,
+      "118232.11000000",
+      "118232.12000000",
+      "117883.86000000",
+      "117956.32000000",
+      "249.16255000",
+      1753563599999,
+      "29406692.32530640",
+      28688,
+      "79.37086000",
+      "9364373.51580570",
+      "0"
+    ],
+    [
+      1753563600000,
+      "117956.32000000",
+      "118068.00000000",
+      "117888.20000000",
+      "118028.56000000",
+      "149.87446000",
+      1753567199999,
+      "17679465.07199660",
+      20472,
+      "56.00968000",
+      "6607171.88481020",
+      "0"
+    ],
+    [
+      1753567200000,
+      "118028.56000000",
+      "118276.66000000",
+      "117978.00000000",
+      "118007.02000000",
+      "289.29406000",
+      1753570799999,
+      "34174096.91811790",
+      36298,
+      "147.86404000",
+      "17469023.02921140",
+      "0"
+    ],
+    [
+      1753570800000,
+      "118007.03000000",
+      "118048.19000000",
+      "117890.00000000",
+      "117919.99000000",
+      "170.31788000",
+      1753574399999,
+      "20089333.13553010",
+      23291,
+      "60.20419000",
+      "7100790.21837140",
+      "0"
+    ],
+    [
+      1753574400000,
+      "117919.99000000",
+      "117961.89000000",
+      "117825.50000000",
+      "117952.00000000",
+      "131.17257000",
+      1753577999999,
+      "15463154.68395330",
+      26916,
+      "55.25005000",
+      "6512978.72413820",
+      "0"
+    ],
+    [
+      1753578000000,
+      "117951.99000000",
+      "118190.00000000",
+      "117920.00000000",
+      "118102.00000000",
+      "291.96170000",
+      1753581599999,
+      "34478655.79506630",
+      32665,
+      "188.61622000",
+      "22272685.86533970",
+      "0"
+    ],
+    [
+      1753581600000,
+      "118102.00000000",
+      "118358.18000000",
+      "118021.85000000",
+      "118309.99000000",
+      "398.69577000",
+      1753585199999,
+      "47137958.98967600",
+      31911,
+      "257.97520000",
+      "30501812.70714160",
+      "0"
+    ],
+    [
+      1753585200000,
+      "118309.99000000",
+      "118309.99000000",
+      "118080.92000000",
+      "118182.83000000",
+      "185.67692000",
+      1753588799999,
+      "21947787.61723470",
+      20897,
+      "73.80200000",
+      "8722335.65753050",
+      "0"
+    ],
+    [
+      1753588800000,
+      "118182.83000000",
+      "118272.43000000",
+      "118149.19000000",
+      "118215.10000000",
+      "180.57499000",
+      1753592399999,
+      "21347145.83220220",
+      22971,
+      "95.61925000",
+      "11304057.72436830",
+      "0"
+    ],
+    [
+      1753592400000,
+      "118215.09000000",
+      "118300.00000000",
+      "118160.84000000",
+      "118274.73000000",
+      "261.59962000",
+      1753595999999,
+      "30931168.01317450",
+      29783,
+      "126.28159000",
+      "14931350.21684620",
+      "0"
+    ],
+    [
+      1753596000000,
+      "118274.73000000",
+      "118438.83000000",
+      "118197.71000000",
+      "118263.40000000",
+      "218.37982000",
+      1753599599999,
+      "25836014.42266510",
+      26851,
+      "116.02142000",
+      "13726633.46607740",
+      "0"
+    ],
+    [
+      1753599600000,
+      "118263.40000000",
+      "118263.40000000",
+      "118066.74000000",
+      "118095.95000000",
+      "147.65770000",
+      1753603199999,
+      "17447257.60107160",
+      24673,
+      "52.97741000",
+      "6259325.71873670",
+      "0"
+    ],
+    [
+      1753603200000,
+      "118095.95000000",
+      "118129.75000000",
+      "117950.47000000",
+      "117950.47000000",
+      "201.29673000",
+      1753606799999,
+      "23758802.37052020",
+      27620,
+      "93.12465000",
+      "10991515.72967000",
+      "0"
+    ],
+    [
+      1753606800000,
+      "117950.47000000",
+      "117999.91000000",
+      "117859.98000000",
+      "117943.92000000",
+      "195.86439000",
+      1753610399999,
+      "23094454.67124340",
+      28889,
+      "86.88493000",
+      "10243981.12182540",
+      "0"
+    ],
+    [
+      1753610400000,
+      "117943.92000000",
+      "118292.86000000",
+      "117943.92000000",
+      "118184.92000000",
+      "257.64400000",
+      1753613999999,
+      "30446168.13289620",
+      33907,
+      "134.01873000",
+      "15835380.69470160",
+      "0"
+    ],
+    [
+      1753614000000,
+      "118184.92000000",
+      "118255.32000000",
+      "118050.00000000",
+      "118072.71000000",
+      "181.16448000",
+      1753617599999,
+      "21408984.98670570",
+      30179,
+      "74.86482000",
+      "8846779.27685850",
+      "0"
+    ],
+    [
+      1753617600000,
+      "118072.71000000",
+      "118111.34000000",
+      "117890.00000000",
+      "118097.39000000",
+      "298.94425000",
+      1753621199999,
+      "35282190.66291210",
+      35092,
+      "155.30514000",
+      "18330367.78460790",
+      "0"
+    ],
+    [
+      1753621200000,
+      "118097.39000000",
+      "118217.60000000",
+      "118085.87000000",
+      "118201.99000000",
+      "217.84311000",
+      1753624799999,
+      "25741603.29414700",
+      32158,
+      "110.00123000",
+      "12998574.66400150",
+      "0"
+    ],
+    [
+      1753624800000,
+      "118201.99000000",
+      "118499.00000000",
+      "118149.96000000",
+      "118422.16000000",
+      "467.70923000",
+      1753628399999,
+      "55352231.13762750",
+      52515,
+      "261.25720000",
+      "30916316.23209140",
+      "0"
+    ],
+    [
+      1753628400000,
+      "118422.16000000",
+      "118588.00000000",
+      "118236.84000000",
+      "118585.74000000",
+      "601.55506000",
+      1753631999999,
+      "71250908.93861620",
+      63056,
+      "367.66331000",
+      "43548160.94099640",
+      "0"
+    ],
+    [
+      1753632000000,
+      "118585.75000000",
+      "119540.01000000",
+      "118585.75000000",
+      "119090.45000000",
+      "2270.02899000",
+      1753635599999,
+      "270584988.75733680",
+      178598,
+      "1599.90881000",
+      "190695730.64385140",
+      "0"
+    ],
+    [
+      1753635600000,
+      "119090.46000000",
+      "119218.32000000",
+      "118975.65000000",
+      "119134.22000000",
+      "139.52013000",
+      1753639199999,
+      "16616183.17902660",
+      22728,
+      "91.41076000",
+      "10886638.21938660",
+      "0"
+    ]
+  ],
+  "infor_overview": [
+    {
+      "question": "Bitcoin l\u00e0 g\u00ec?",
+      "answer": "Bitcoin l\u00e0 m\u1ed9t lo\u1ea1i ti\u1ec1n m\u00e3 h\u00f3a phi t\u1eadp trung \u0111\u01b0\u1ee3c t\u1ea1o ra v\u00e0o n\u0103m 2009 b\u1edfi m\u1ed9t ng\u01b0\u1eddi ho\u1eb7c nh\u00f3m ng\u01b0\u1eddi c\u00f3 bi\u1ec7t danh l\u00e0 Satoshi Nakamoto."
+    },
+    {
+      "question": "Ethereum l\u00e0 g\u00ec?",
+      "answer": "Ethereum l\u00e0 m\u1ed9t n\u1ec1n t\u1ea3ng m\u00e3 ngu\u1ed3n m\u1edf d\u1ef1a tr\u00ean blockchain c\u00f3 t\u00ednh n\u0103ng h\u1ee3p \u0111\u1ed3ng th\u00f4ng minh (smart contract)."
+    },
+    {
+      "question": "L\u00e0m sao \u0111\u1ec3 mua Bitcoin?",
+      "answer": "B\u1ea1n c\u00f3 th\u1ec3 mua Bitcoin th\u00f4ng qua c\u00e1c s\u00e0n giao d\u1ecbch nh\u01b0 Binance, Coinbase ho\u1eb7c Kraken. \u0110\u0103ng k\u00fd t\u00e0i kho\u1ea3n, x\u00e1c minh danh t\u00ednh v\u00e0 th\u1ef1c hi\u1ec7n giao d\u1ecbch."
+    },
+    {
+      "question": "V\u00ed l\u01b0u tr\u1eef Bitcoin l\u00e0 g\u00ec?",
+      "answer": "V\u00ed Bitcoin l\u00e0 m\u1ed9t ph\u1ea7n m\u1ec1m ho\u1eb7c thi\u1ebft b\u1ecb ph\u1ea7n c\u1ee9ng d\u00f9ng \u0111\u1ec3 l\u01b0u tr\u1eef kh\u00f3a ri\u00eang v\u00e0 qu\u1ea3n l\u00fd t\u00e0i s\u1ea3n Bitcoin c\u1ee7a b\u1ea1n."
+    },
+    {
+      "question": "Gi\u00e1 Bitcoin h\u00f4m nay l\u00e0 bao nhi\u00eau?",
+      "answer": "Gi\u00e1 Bitcoin thay \u0111\u1ed5i li\u00ean t\u1ee5c. B\u1ea1n c\u00f3 th\u1ec3 ki\u1ec3m tra tr\u00ean CoinMarketCap ho\u1eb7c s\u00e0n giao d\u1ecbch b\u1ea1n \u0111ang s\u1eed d\u1ee5ng."
+    },
+    {
+      "question": "Blockchain ho\u1ea1t \u0111\u1ed9ng nh\u01b0 th\u1ebf n\u00e0o?",
+      "answer": "Blockchain l\u00e0 m\u1ed9t chu\u1ed7i kh\u1ed1i ch\u1ee9a c\u00e1c kh\u1ed1i d\u1eef li\u1ec7u \u0111\u01b0\u1ee3c li\u00ean k\u1ebft b\u1eb1ng m\u00e3 h\u00f3a. M\u1ed7i kh\u1ed1i ch\u1ee9a th\u00f4ng tin giao d\u1ecbch v\u00e0 \u0111\u01b0\u1ee3c x\u00e1c nh\u1eadn b\u1edfi m\u1ea1ng l\u01b0\u1edbi."
+    },
+    {
+      "question": "Altcoin l\u00e0 g\u00ec?",
+      "answer": "Altcoin l\u00e0 b\u1ea5t k\u1ef3 lo\u1ea1i ti\u1ec1n m\u00e3 h\u00f3a n\u00e0o ngo\u00e0i Bitcoin, v\u00ed d\u1ee5 nh\u01b0 Ethereum, Cardano, Solana, v.v."
+    },
+    {
+      "question": "Stablecoin l\u00e0 g\u00ec?",
+      "answer": "Stablecoin l\u00e0 lo\u1ea1i ti\u1ec1n m\u00e3 h\u00f3a \u0111\u01b0\u1ee3c g\u1eafn v\u1edbi gi\u00e1 tr\u1ecb \u1ed5n \u0111\u1ecbnh nh\u01b0 USD, v\u00ed d\u1ee5 USDT, USDC, DAI."
+    },
+    {
+      "question": "V\u00ed l\u1ea1nh v\u00e0 v\u00ed n\u00f3ng kh\u00e1c nhau th\u1ebf n\u00e0o?",
+      "answer": "V\u00ed l\u1ea1nh l\u01b0u tr\u1eef offline (nh\u01b0 Ledger, Trezor), c\u00f2n v\u00ed n\u00f3ng lu\u00f4n k\u1ebft n\u1ed1i internet (nh\u01b0 Trust Wallet, MetaMask)."
+    },
+    {
+      "question": "KYC trong crypto l\u00e0 g\u00ec?",
+      "answer": "KYC (Know Your Customer) l\u00e0 quy tr\u00ecnh x\u00e1c minh danh t\u00ednh ng\u01b0\u1eddi d\u00f9ng khi \u0111\u0103ng k\u00fd t\u00e0i kho\u1ea3n s\u00e0n giao d\u1ecbch."
+    },
+    {
+      "question": "Token v\u00e0 coin kh\u00e1c g\u00ec nhau?",
+      "answer": "Coin c\u00f3 blockchain ri\u00eang (BTC, ETH), c\u00f2n token ch\u1ea1y tr\u00ean blockchain c\u1ee7a coin kh\u00e1c (v\u00ed d\u1ee5: USDT ch\u1ea1y tr\u00ean Ethereum)."
+    },
+    {
+      "question": "Smart contract l\u00e0 g\u00ec?",
+      "answer": "Smart contract l\u00e0 h\u1ee3p \u0111\u1ed3ng th\u00f4ng minh t\u1ef1 \u0111\u1ed9ng ch\u1ea1y tr\u00ean blockchain khi \u0111i\u1ec1u ki\u1ec7n \u0111\u01b0\u1ee3c \u0111\u00e1p \u1ee9ng, kh\u00f4ng c\u1ea7n trung gian."
+    },
+    {
+      "question": "NFT l\u00e0 g\u00ec?",
+      "answer": "NFT (Non-Fungible Token) l\u00e0 token kh\u00f4ng th\u1ec3 thay th\u1ebf, th\u01b0\u1eddng \u0111\u1ea1i di\u1ec7n cho t\u00e0i s\u1ea3n k\u1ef9 thu\u1eadt s\u1ed1 nh\u01b0 \u1ea3nh, nh\u1ea1c, game item."
+    },
+    {
+      "question": "V\u00ed MetaMask c\u00f3 d\u00f9ng \u0111\u01b0\u1ee3c tr\u00ean \u0111i\u1ec7n tho\u1ea1i kh\u00f4ng?",
+      "answer": "C\u00f3, MetaMask h\u1ed7 tr\u1ee3 c\u1ea3 tr\u00ecnh duy\u1ec7t Chrome v\u00e0 \u1ee9ng d\u1ee5ng tr\u00ean \u0111i\u1ec7n tho\u1ea1i iOS, Android."
+    },
+    {
+      "question": "S\u00e0n DEX l\u00e0 g\u00ec?",
+      "answer": "S\u00e0n DEX (Decentralized Exchange) l\u00e0 s\u00e0n giao d\u1ecbch phi t\u1eadp trung, kh\u00f4ng c\u1ea7n trung gian, v\u00ed d\u1ee5 nh\u01b0 Uniswap, PancakeSwap."
+    },
+    {
+      "question": "Slippage l\u00e0 g\u00ec khi swap token?",
+      "answer": "Slippage l\u00e0 \u0111\u1ed9 l\u1ec7ch gi\u00e1 gi\u1eefa gi\u00e1 b\u1ea1n th\u1ea5y v\u00e0 gi\u00e1 th\u1ef1c t\u1ebf khi giao d\u1ecbch token, \u0111\u1eb7c bi\u1ec7t ph\u1ed5 bi\u1ebfn tr\u00ean s\u00e0n DEX."
+    },
+    {
+      "question": "Gas fee l\u00e0 g\u00ec?",
+      "answer": "Gas fee l\u00e0 ph\u00ed tr\u1ea3 cho m\u1ea1ng blockchain \u0111\u1ec3 x\u1eed l\u00fd giao d\u1ecbch, v\u00ed d\u1ee5 m\u1ea1ng Ethereum c\u00f3 gas fee cao khi t\u1eafc ngh\u1ebdn."
+    },
+    {
+      "question": "T\u00f4i b\u1ecb m\u1ea5t coin khi g\u1eedi sai m\u1ea1ng, c\u00f3 l\u1ea5y l\u1ea1i \u0111\u01b0\u1ee3c kh\u00f4ng?",
+      "answer": "N\u1ebfu b\u1ea1n g\u1eedi coin sai m\u1ea1ng (v\u00ed d\u1ee5 g\u1eedi BEP20 v\u00e0o v\u00ed ERC20), kh\u1ea3 n\u0103ng l\u1ea5y l\u1ea1i r\u1ea5t th\u1ea5p v\u00e0 t\u00f9y v\u00e0o s\u00e0n/\u0111\u1ecba ch\u1ec9 \u0111\u00edch."
+    },
+    {
+      "question": "TVL trong DeFi l\u00e0 g\u00ec?",
+      "answer": "TVL (Total Value Locked) l\u00e0 t\u1ed5ng s\u1ed1 t\u00e0i s\u1ea3n b\u1ecb kh\u00f3a trong c\u00e1c giao th\u1ee9c DeFi \u0111\u1ec3 farming, lending, staking."
+    },
+    {
+      "question": "Airdrop l\u00e0 g\u00ec?",
+      "answer": "Airdrop l\u00e0 h\u00ecnh th\u1ee9c ph\u00e1t mi\u1ec5n ph\u00ed token cho ng\u01b0\u1eddi d\u00f9ng, th\u01b0\u1eddng \u0111\u1ec3 qu\u1ea3ng b\u00e1 d\u1ef1 \u00e1n m\u1edbi."
+    },
+    {
+      "question": "ICO l\u00e0 g\u00ec?",
+      "answer": "ICO (Initial Coin Offering) l\u00e0 h\u00ecnh th\u1ee9c g\u1ecdi v\u1ed1n cho d\u1ef1 \u00e1n ti\u1ec1n m\u00e3 h\u00f3a b\u1eb1ng c\u00e1ch b\u00e1n token l\u1ea7n \u0111\u1ea7u cho c\u00f4ng ch\u00fang."
+    },
+    {
+      "question": "Ph\u00e2n bi\u1ec7t BEP20 v\u00e0 ERC20?",
+      "answer": "ERC20 l\u00e0 chu\u1ea9n token c\u1ee7a Ethereum, BEP20 l\u00e0 chu\u1ea9n c\u1ee7a Binance Smart Chain. Ch\u00fang kh\u00f4ng t\u01b0\u01a1ng th\u00edch tr\u1ef1c ti\u1ebfp."
+    },
+    {
+      "question": "T\u00f4i n\u00ean d\u00f9ng v\u00ed n\u00e0o \u0111\u1ec3 l\u01b0u tr\u1eef NFT?",
+      "answer": "B\u1ea1n c\u00f3 th\u1ec3 d\u00f9ng MetaMask, Trust Wallet, ho\u1eb7c v\u00ed chuy\u00ean d\u1ee5ng nh\u01b0 Phantom n\u1ebfu NFT tr\u00ean Solana."
+    },
+    {
+      "question": "DEX n\u00e0o ph\u1ed5 bi\u1ebfn nh\u1ea5t?",
+      "answer": "Uniswap (Ethereum) v\u00e0 PancakeSwap (BSC) l\u00e0 hai s\u00e0n DEX ph\u1ed5 bi\u1ebfn nh\u1ea5t hi\u1ec7n nay."
+    },
+    {
+      "question": "C\u00f3 th\u1ec3 ki\u1ebfm ti\u1ec1n t\u1eeb crypto m\u00e0 kh\u00f4ng \u0111\u1ea7u t\u01b0 kh\u00f4ng?",
+      "answer": "C\u00f3, b\u1ea1n c\u00f3 th\u1ec3 tham gia airdrop, bounty, testnet, ho\u1eb7c vi\u1ebft b\u00e0i, l\u00e0m n\u1ed9i dung crypto \u0111\u1ec3 ki\u1ebfm token mi\u1ec5n ph\u00ed."
+    },
+    {
+      "question": "Coin n\u00e0o ti\u1ec1m n\u0103ng trong n\u0103m nay?",
+      "answer": "T\u00f9y xu h\u01b0\u1edbng th\u1ecb tr\u01b0\u1eddng, nh\u01b0ng ETH, SOL, ARB, LDO v\u00e0 c\u00e1c token DePIN, AI th\u01b0\u1eddng \u0111\u01b0\u1ee3c quan t\u00e2m."
+    }
+  ],
+  "infor_bitstream": "bitstream l\u00e0 n\u1ec1n t\u1ea3ng c\u1eadp nh\u1eadt th\u00f4ng b\u00e1o tin t\u1ee9c v\u1ec1 bitcoin nhanh ch\u1ed1ng ti\u1ec7n l\u1ee3i, ph\u00f9 h\u1ee3p v\u1edbi nhi\u1ec1u traderb\u1eb1ng c\u00e1ch \u0111\u0103ng nh\u1eadp t\u00e0i kho\u1ea3n g\u1ed3m email \u0111\u1ec3 nh\u1eadn th\u00f4ng b\u00e1o c\u00e1c ch\u1ec9 b\u00e1o s\u1edbm nh\u1ea5t c\u00f3 th\u1ec3"
+}

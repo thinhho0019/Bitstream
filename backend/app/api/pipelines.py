@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+
 from app.db.database import SessionLocal
 from app.models.pipeline import Pipeline
 from app.schemas.pipelines import PipelineCreate, PipelineOut
@@ -27,7 +28,7 @@ def create_pipeline(pipeline: PipelineCreate, db: Session = Depends(get_db)):
         print(f"❌ Error in list_pipelines: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Error retrieving pipelines: {str(e)}"
+            detail=f"Error retrieving pipelines: {str(e)}",
         )
 
 
@@ -42,12 +43,14 @@ def list_pipelines(db: Session = Depends(get_db)):
         # Trả lỗi có thông báo cụ thể cho client
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Error retrieving pipelines: {str(e)}"
+            detail=f"Error retrieving pipelines: {str(e)}",
         )
 
 
 @router.put("/pipelines/{pipeline_id}", response_model=PipelineOut)
-def update_pipelines(pipeline_id: int, pipeline_data: PipelineCreate, db: Session = Depends(get_db)):
+def update_pipelines(
+    pipeline_id: int, pipeline_data: PipelineCreate, db: Session = Depends(get_db)
+):
     pipeline = db.query(Pipeline).get(pipeline_id)
     if not pipeline:
         raise HTTPException(status_code=404, detail="Pipeline not found")
@@ -65,6 +68,4 @@ def delete_pipelines(pipeline_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Pipeline not found")
     db.delete(pipeline)
     db.commit()
-    return {
-        "message": "Delected successfully"
-    }
+    return {"message": "Delected successfully"}

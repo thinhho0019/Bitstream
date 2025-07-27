@@ -1,7 +1,7 @@
 export interface Account {
-    id: number;
+    id?: number;
     email: string;
     name: string;
     image?: string;
-    created_at: string;
+    created_at?: string;
 }
