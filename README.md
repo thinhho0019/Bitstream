@@ -124,3 +124,44 @@ cd bitstream
 
 # 2. Cmd compose docker
 docker-compose up --build
+```
+## 🤝 Contributing
+
+We welcome contributions from the community!
+
+To contribute to **BitStream**:
+
+1. 🍴 Fork the repository  
+2. 🌿 Create a new branch: `git checkout -b feature/your-feature-name`  
+3. ✅ Commit your changes: `git commit -m 'Add new feature'`  
+4. 🚀 Push to your branch: `git push origin feature/your-feature-name`  
+5. 🛠 Open a Pull Request
+
+Please follow consistent coding style and include clear documentation for any new features.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 📬 Contact & Support
+
+If you have any questions, ideas, or need support:
+
+- Open an [issue](https://github.com/your-username/bitstream/issues)
+- Or contact us via [GitHub profile](https://github.com/your-username)
+
+---
+
+## ⭐ If You Like This Project
+
+Please consider:
+
+- ⭐ Starring the repo  
+- 📢 Sharing it with others  
+- ✅ Following for updates
+
+> Thank you for your interest and support in BitStream!
