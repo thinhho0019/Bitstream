@@ -18,8 +18,14 @@ class AssetPrediction(Base):
     expiration_time: Mapped[str] = mapped_column(String, nullable=False)
     status: Mapped[str] = mapped_column(String, nullable=False, default="pending")
 
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
     end_time: Mapped[datetime] = mapped_column(DateTime, nullable=True)
 
-    account_id: Mapped[UUIDType] = mapped_column(ForeignKey("accounts.id"), nullable=False)
-    account: Mapped[Account] = relationship("Account", back_populates="asset_predictions")
+    account_id: Mapped[UUIDType] = mapped_column(
+        ForeignKey("accounts.id"), nullable=False
+    )
+    account: Mapped[Account] = relationship(
+        "Account", back_populates="asset_predictions"
+    )

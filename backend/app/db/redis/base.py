@@ -3,6 +3,7 @@ import redis
 from app.core.config import settings
 from typing import Optional
 
+
 class RedisBase:
     def __init__(self):
         self.redis = redis.Redis(

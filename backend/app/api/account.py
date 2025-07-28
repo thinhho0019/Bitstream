@@ -70,7 +70,9 @@ def get_db():
 @router.post("/login", response_model=LoginResponse)
 def login_account(data: LoginRequest, request: Request, db: Session = Depends(get_db)):
     user_agent = request.headers.get("user-agent", "unknown")
-    ip = request.headers.get("x-forwarded-for") or (request.client.host if request.client else None)
+    ip = request.headers.get("x-forwarded-for") or (
+        request.client.host if request.client else None
+    )
     finger_print = data.finger_print
     if not data.email or not data.password:
         raise HTTPException(
@@ -131,7 +133,7 @@ def login_account(data: LoginRequest, request: Request, db: Session = Depends(ge
 
 @router.get("/get-infor-user", response_model=AccountGetInforOut)
 def get_infor_account(
-        user=Depends(get_current_google_user), db: Session = Depends(get_db)
+    user=Depends(get_current_google_user), db: Session = Depends(get_db)
 ):
     try:
         if "id" not in user:
@@ -200,7 +202,7 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
                 to_email=account.email,
                 subject="Bitstream Verify Email",
                 content=f"<p>Click to verify your Bitstream account:</p>"
-                        f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
+                f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
                 html=True,
             )
         db.add(db_account)
@@ -241,7 +243,7 @@ async def refresh_token_account(req: LoginRefreshTokenRequest):
 
 @router.get("/verify-email", response_class=HTMLResponse)
 async def verify_email(
-        request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
+    request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
 ):
     message_success = {
         "result": "success",
