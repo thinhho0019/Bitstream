@@ -1,6 +1,7 @@
 import redis
 
 from app.core.config import settings
+from typing import Optional
 
 
 class RedisBase:
@@ -12,7 +13,7 @@ class RedisBase:
             decode_responses=True,  # Trả về string thay vì bytes
         )
 
-    def set(self, key: str, value: str, ex: int = None):
+    def set(self, key: str, value: str, ex: int | None = None):
         return self.redis.set(name=key, value=value, ex=ex)
 
     def get(self, key: str):

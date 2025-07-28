@@ -11,8 +11,7 @@ from app.db.database import SessionLocal
 from app.db.redis.base import rdBase
 from app.models.account import Account
 from app.models.asset_predictions import AssetPrediction
-from app.schemas.asset_prediction import (AssetPredictionCreate,
-                                          AssetPredictionOut)
+from app.schemas.asset_prediction import AssetPredictionCreate, AssetPredictionOut
 from app.services.asset_prediction import update_asset_prediction_status
 
 router = APIRouter()
@@ -101,7 +100,6 @@ def get_asset_prediction(account_id: str, db: Session = Depends(get_db)):
         for asset in db_asset_predicrection:
             current_time = datetime.now().timestamp()
             end_time = asset.end_time.timestamp()
-            print(current_time, end_time)
             if end_time < current_time and asset.status == "running":
                 asset.status = "ending"
         db.commit()

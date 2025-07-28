@@ -1,7 +1,4 @@
 import logging
-from datetime import datetime
-
-import redis
 from apscheduler.jobstores.redis import RedisJobStore
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -25,10 +22,10 @@ def start_scheduler():
 
     scheduler.add_job(
         notify_btc,
-        trigger='interval',
+        trigger="interval",
         seconds=60,
         id="monitor_btc_price",
-        max_instances=5
+        max_instances=5,
     )
 
     scheduler.add_job(

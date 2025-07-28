@@ -4,9 +4,15 @@ from sqlalchemy import engine_from_config, pool
 
 from alembic import context
 from app.db.database import Base
-from app.models import (account, asset_predictions, bitcoin,
-                        email_verification_tokens, login_session, message,
-                        pipeline)
+from app.models import (
+    account,
+    asset_predictions,
+    bitcoin,
+    email_verification_tokens,
+    login_session,
+    message,
+    pipeline,
+)
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

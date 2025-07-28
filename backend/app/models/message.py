@@ -1,8 +1,19 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import (UUID, Boolean, CheckConstraint, Column, DateTime,
-                        Float, ForeignKey, Index, Integer, String, Text)
+from sqlalchemy import (
+    UUID,
+    Boolean,
+    CheckConstraint,
+    Column,
+    DateTime,
+    Float,
+    ForeignKey,
+    Index,
+    Integer,
+    String,
+    Text,
+)
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 

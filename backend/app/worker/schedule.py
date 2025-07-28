@@ -2,8 +2,13 @@ import json
 import time
 from datetime import datetime
 
-from fetch_price import (fetch_24h_stats, fetch_and_save_bitcoin_price,
-                         fetch_klines, fetch_orderbook, fetch_price)
+from app.worker.fetch_price import (
+    fetch_24h_stats,
+    fetch_and_save_bitcoin_price,
+    fetch_klines,
+    fetch_orderbook,
+    fetch_price,
+)
 
 from app.core.message.infor_message import InforMessage
 

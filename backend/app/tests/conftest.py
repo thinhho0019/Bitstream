@@ -31,7 +31,9 @@ def override_get_db_with_model(model_instance):
     return override_get_db
 
 
-def override_get_db_with_models(account: Account, message: Message, asset: AssetPrediction):
+def override_get_db_with_models(
+    account: Account, message: Message, asset: AssetPrediction
+):
     def override_get_db():
         db = MagicMock()
 

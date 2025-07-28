@@ -32,5 +32,6 @@ class EmailService:
 
 
 email_service = EmailService(
-    email_address=os.getenv("EMAIL_ADDRESS"), email_password=os.getenv("EMAIL_PASSWORD")
+    email_address=str(os.getenv("EMAIL_ADDRESS")),
+    email_password=str(os.getenv("EMAIL_PASSWORD")),
 )

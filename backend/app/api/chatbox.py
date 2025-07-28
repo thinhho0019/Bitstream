@@ -29,9 +29,9 @@ def get_db():
 
 @router.post("/assistants/bitcoin")
 def ask_chat_box(
-        req: ChatRequest,
-        user=Depends(get_current_google_user),
-        db: Session = Depends(get_db),
+    req: ChatRequest,
+    user=Depends(get_current_google_user),
+    db: Session = Depends(get_db),
 ):
     # log lại lịch sử nếu cần: req.user_id, req.conversation_id
     result = qa_system.ask(req.message)  # hoặc pipe.invoke nếu dùng RAG pipeline

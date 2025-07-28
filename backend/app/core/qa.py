@@ -12,11 +12,14 @@ from langchain_core.prompts import PromptTemplate
 
 from app.core.config import settings
 from app.core.message.infor_message import InforMessage
-from app.training_doc.training_document_bitcoin import \
-    generate_training_document
-from app.worker.fetch_price import (fetch_24h_stats,
-                                    fetch_and_save_bitcoin_price, fetch_klines,
-                                    fetch_orderbook, fetch_price)
+from app.training_doc.training_document_bitcoin import generate_training_document
+from app.worker.fetch_price import (
+    fetch_24h_stats,
+    fetch_and_save_bitcoin_price,
+    fetch_klines,
+    fetch_orderbook,
+    fetch_price,
+)
 
 
 class QASystem:
