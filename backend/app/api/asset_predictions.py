@@ -11,8 +11,7 @@ from app.db.database import SessionLocal
 from app.db.redis.base import rdBase
 from app.models.account import Account
 from app.models.asset_predictions import AssetPrediction
-from app.schemas.asset_prediction import (AssetPredictionCreate,
-                                          AssetPredictionOut)
+from app.schemas.asset_prediction import AssetPredictionCreate, AssetPredictionOut
 from app.services.asset_prediction import update_asset_prediction_status
 
 router = APIRouter()

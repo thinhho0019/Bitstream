@@ -5,11 +5,14 @@ from pathlib import Path
 
 from app.core.message.infor_message import InforMessage
 from app.core.qa import qa_system
-from app.training_doc.training_document_bitcoin import \
-    generate_training_document
+from app.training_doc.training_document_bitcoin import generate_training_document
 from app.utils.func_help import read_and_fix_json
-from app.worker.fetch_price import (fetch_24h_stats, fetch_klines,
-                                    fetch_orderbook, fetch_price)
+from app.worker.fetch_price import (
+    fetch_24h_stats,
+    fetch_klines,
+    fetch_orderbook,
+    fetch_price,
+)
 
 
 def update_price_btc():

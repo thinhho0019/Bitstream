@@ -10,8 +10,7 @@ from sqlalchemy.orm import Session
 
 from app.auth.dependencies import get_current_google_user
 from app.auth.hash import hash_password, verify_password
-from app.auth.jwt import (create_access_token, create_refresh_token,
-                          decode_access_token)
+from app.auth.jwt import create_access_token, create_refresh_token, decode_access_token
 from app.core.message.account_message import AccountMessage
 from app.db.database import SessionLocal
 
@@ -131,7 +130,7 @@ def login_account(data: LoginRequest, request: Request, db: Session = Depends(ge
 
 @router.get("/get-infor-user", response_model=AccountGetInforOut)
 def get_infor_account(
-        user=Depends(get_current_google_user), db: Session = Depends(get_db)
+    user=Depends(get_current_google_user), db: Session = Depends(get_db)
 ):
     try:
         if "id" not in user:
@@ -197,7 +196,7 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
                 to_email=account.email,
                 subject="Bitstream Verify Email",
                 content=f"<p>Click to verify your Bitstream account:</p>"
-                        f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
+                f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
                 html=True,
             )
         db.add(db_account)
@@ -233,7 +232,7 @@ async def refresh_token_account(req: LoginRefreshTokenRequest):
 
 @router.get("/verify-email", response_class=HTMLResponse)
 async def verify_email(
-        request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
+    request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
 ):
     message_success = {
         "result": "success",
