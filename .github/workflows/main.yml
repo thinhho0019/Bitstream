@@ -40,6 +40,19 @@ jobs:
     defaults:
       run:
         working-directory: backend
+    env:
+      SECRET_KEY: supersecret
+      DATABASE_URL: sqlite:///./test.db
+      ALGORITHM: HS256
+      GOOGLE_CLIENT_ID: dummy-id
+      GOOGLE_CLIENT_SECRET: dummy-secret
+      EMAIL_ADDRESS: test@example.com
+      EMAIL_PASSWORD: dummy-password
+      HOST_REDIS: localhost
+      PORT_REDIS: 6379
+      NUMBER_DB_REDIS: 0
+      DASHBOARD_URL: http://localhost
+      KEY_GEMINI: dummy-key
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
