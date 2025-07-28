@@ -1,23 +1,25 @@
-import datetime
-
-from sqlalchemy import UUID, Column, DateTime, Float, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import DateTime, Float, ForeignKey, Integer, String
 from sqlalchemy.sql import func
+from uuid import UUID as UUIDType
+from datetime import datetime
 
-from app.db.database import Base  # Giả sử bạn có Base trong database.py
+from app.db.database import Base
+from app.models.account import Account
 
 
 class AssetPrediction(Base):
     __tablename__ = "asset_predictions"
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)  # Tên tài sản (bitcoin, etc.)
-    current_value = Column(Float, nullable=False)
-    next_value = Column(Float, nullable=False)
-    expiration_time = Column(String, nullable=False)  # Ví dụ: "1H"
-    status = Column(String, nullable=False, default="pending")  # pending, success, fail
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    end_time = Column(DateTime)
-    # one to many account with asset_predictions
-    account_id = Column(UUID(as_uuid=True), ForeignKey("accounts.id"), nullable=False)
-    account = relationship("Account", back_populates="asset_predictions")
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String, nullable=False)
+    current_value: Mapped[float] = mapped_column(Float, nullable=False)
+    next_value: Mapped[float] = mapped_column(Float, nullable=False)
+    expiration_time: Mapped[str] = mapped_column(String, nullable=False)
+    status: Mapped[str] = mapped_column(String, nullable=False, default="pending")
+
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    end_time: Mapped[datetime] = mapped_column(DateTime, nullable=True)
+
+    account_id: Mapped[UUIDType] = mapped_column(ForeignKey("accounts.id"), nullable=False)
+    account: Mapped[Account] = relationship("Account", back_populates="asset_predictions")

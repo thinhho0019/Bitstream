@@ -100,7 +100,6 @@ def get_asset_prediction(account_id: str, db: Session = Depends(get_db)):
         for asset in db_asset_predicrection:
             current_time = datetime.now().timestamp()
             end_time = asset.end_time.timestamp()
-            print(current_time, end_time)
             if end_time < current_time and asset.status == "running":
                 asset.status = "ending"
         db.commit()

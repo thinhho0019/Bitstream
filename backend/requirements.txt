@@ -11,6 +11,9 @@ python-dotenv
 python-jose[cryptography]
 passlib[bcrypt]
 jinja2
+types-passlib
+types-python-jose
+types-requests
 apscheduler
 accelerate
 langchain

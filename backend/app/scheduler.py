@@ -1,7 +1,4 @@
 import logging
-from datetime import datetime
-
-import redis
 from apscheduler.jobstores.redis import RedisJobStore
 from apscheduler.schedulers.background import BackgroundScheduler
 

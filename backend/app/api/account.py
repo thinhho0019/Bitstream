@@ -70,20 +70,21 @@ def get_db():
 @router.post("/login", response_model=LoginResponse)
 def login_account(data: LoginRequest, request: Request, db: Session = Depends(get_db)):
     user_agent = request.headers.get("user-agent", "unknown")
-    ip = request.headers.get("x-forwarded-for", request.client.host)
+    ip = request.headers.get("x-forwarded-for") or (request.client.host if request.client else None)
     finger_print = data.finger_print
     if not data.email or not data.password:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=AccountMessage.ACCOUNT_MISS_PARAM,
         )
-    db_account = db.query(Account).filter(data.email == Account.email).first()
+    db_account = db.query(Account).filter(Account.email == data.email).first()
     if not db_account:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=AccountMessage.ACCOUNT_LOGIN_FAIL_EMAIL,
         )
-    password_hash = verify_password(data.password, db_account.password)
+
+    password_hash = verify_password(str(data.password), str(db_account.password))
     if not password_hash:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -130,7 +131,7 @@ def login_account(data: LoginRequest, request: Request, db: Session = Depends(ge
 
 @router.get("/get-infor-user", response_model=AccountGetInforOut)
 def get_infor_account(
-    user=Depends(get_current_google_user), db: Session = Depends(get_db)
+        user=Depends(get_current_google_user), db: Session = Depends(get_db)
 ):
     try:
         if "id" not in user:
@@ -152,7 +153,7 @@ def get_infor_account(
 @router.post("/accounts", status_code=status.HTTP_201_CREATED)
 def create_account(account: AccountCreate, db: Session = Depends(get_db)):
     # check email exist
-    check_email = db.query(Account).filter(account.email == Account.email).first()
+    check_email = db.query(Account).filter(Account.email == account.email).first()
     if check_email and account.provider == "email":
         if len(check_email.email_verifications) > 0:
             raise HTTPException(
@@ -180,11 +181,14 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
             )
         else:
             random_name = random.sample(NAME_TEMPLATE, 1)[0]
+            password = account.password
+            if password is None:
+                password = ""
             db_account = Account(
                 email=account.email,
                 name=random_name,
                 image=account.image,
-                password=hash_password(account.password),
+                password=hash_password(password),
                 provider="email",
             )
             token = EmailVerificationToken(
@@ -196,7 +200,7 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
                 to_email=account.email,
                 subject="Bitstream Verify Email",
                 content=f"<p>Click to verify your Bitstream account:</p>"
-                f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
+                        f"<a href='http://localhost:8000/api/verify-email?token={token.token}'>Click here</a>",
                 html=True,
             )
         db.add(db_account)
@@ -215,8 +219,13 @@ def create_account(account: AccountCreate, db: Session = Depends(get_db)):
 async def refresh_token_account(req: LoginRefreshTokenRequest):
     try:
         encode_refresh = decode_access_token(req.refresh_token)
-        current_time = datetime.now(timezone.utc).timestamp()
-        expires_time = encode_refresh.get("exp")  # dạng float/int
+        now_time: datetime = datetime.now(timezone.utc)
+        current_time: float = now_time.timestamp()
+        exp_raw = encode_refresh.get("exp")
+        if isinstance(exp_raw, (int, float)):
+            expires_time: float = float(exp_raw)
+        else:
+            raise
         id = encode_refresh.get("id")
         if current_time > expires_time:
             return {"message": "exp"}
@@ -232,7 +241,7 @@ async def refresh_token_account(req: LoginRefreshTokenRequest):
 
 @router.get("/verify-email", response_class=HTMLResponse)
 async def verify_email(
-    request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
+        request: Request, token: Optional[str] = None, db: Session = Depends(get_db)
 ):
     message_success = {
         "result": "success",
@@ -241,7 +250,7 @@ async def verify_email(
     message_fail = {"result": "fail", "message": AccountMessage.ACCOUNT_VERIFY_FAIL}
     token_email = (
         db.query(EmailVerificationToken)
-        .filter(token == EmailVerificationToken.token)
+        .filter(EmailVerificationToken.token == token)
         .first()
     )
     if not token_email:

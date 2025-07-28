@@ -20,4 +20,4 @@ class Settings(BaseSettings):
         env_file = ".env"  # tự động đọc file .env
 
 
-settings = Settings()
+settings = Settings()  # type: ignore
